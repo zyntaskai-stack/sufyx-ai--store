@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SUFYX-AI — Premium AI Digital Products | Automate &amp; Grow</title>
+  <meta name="description" content="SUFYX-AI sells premium AI-powered digital products — WhatsApp bots, content engines, lead gen systems, automation workflows. Deploy in minutes. Pay once, own forever."/>
+  <meta name="keywords" content="AI digital products, WhatsApp automation, AI content generator, lead generation AI, Zapier workflows, Make automation"/>
+  <meta name="author" content="SUFYX-AI"/>
+  <meta name="robots" content="index, follow"/>
+
+  <!-- ─────────────────────────────────────────
+       📊 FIX #5 — GOOGLE ANALYTICS SETUP:
+       1. analytics.google.com pe free account banao
+       2. Property banao → Web → apna URL daalo
+       3. Measurement ID milega (G-XXXXXXXXXX)
+       4. Neeche 'G-XXXXXXXXXX' replace karo
+  ───────────────────────────────────────── -->
+  <!-- Google Analytics (uncomment after adding your ID):
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="SUFYX-AI — Premium AI Digital Products"/>
+  <meta property="og:description" content="Buy ready-to-deploy AI products. WhatsApp bots, content engines, lead funnels. From $47. Pay once, own forever."/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="SUFYX-AI — Premium AI Digital Products"/>
+  <meta name="twitter:description" content="Deploy AI automation in minutes. From $47."/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SUFYX-AI","url":"https://sufyx.ai","description":"Premium AI digital products for business automation","contactPoint":{"@type":"ContactPoint","telephone":"+91-90271-08764","contactType":"customer support"},"sameAs":["https://www.instagram.com/sufiyann_9027"]}</script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    /* ═══════════════════════════════════════
+       DESIGN TOKENS — all colours here only
+    ═══════════════════════════════════════ */
+    :root {
+      --bg:       #F5F5F7;
+      --bg2:      #FFFFFF;
+      --bg3:      #000000;
+      --surface:  #FBFBFD;
+      --card:     #FFFFFF;
+      --dark:     #1D1D1F;
+      --mid:      #424245;
+      --muted:    #6E6E73;
+      --rule:     #D2D2D7;
+      --accent:   #0071E3;
+      --accent-h: #0077ED;
+      --green:    #34C759;
+      --gold:     #FF9F0A;
+      --pink:     #FF375F;
+
+      --r-sm:  12px;
+      --r-md:  18px;
+      --r-lg:  28px;
+      --r-xl:  40px;
+    }
+
+    /* ═══════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      background: var(--bg);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.47;
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════
+       TYPOGRAPHY SCALE
+    ═══════════════════════════════════════ */
+    .t-hero   { font-family: 'DM Serif Display', serif; font-size: clamp(3rem, 7vw, 6.5rem); line-height: 1.04; letter-spacing: -0.02em; color: var(--dark); }
+    .t-hero em{ font-style: italic; color: var(--accent); }
+    .t-title  { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; letter-spacing: -0.015em; color: var(--dark); }
+    .t-title em{ font-style: italic; }
+    .t-section{ font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .t-body   { font-size: 1.05rem; color: var(--muted); line-height: 1.7; }
+    .t-label  { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+    /* ═══════════════════════════════════════
+       BUTTON HIERARCHY
+       Primary → ghost → text (from post-mortem)
+    ═══════════════════════════════════════ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem;
+      border-radius: 980px; cursor: pointer; text-decoration: none;
+      transition: opacity 0.15s, transform 0.1s, background 0.15s;
+      white-space: nowrap; border: none;
+    }
+    .btn-primary   { background: var(--accent); color: #fff; padding: 12px 26px; }
+    .btn-primary:hover { background: var(--accent-h); transform: scale(1.02); }
+    .btn-ghost     { background: transparent; color: var(--accent); padding: 12px 26px; border: 1.5px solid rgba(0,113,227,0.35); }
+    .btn-ghost:hover { background: rgba(0,113,227,0.06); }
+    .btn-dark      { background: var(--dark); color: #fff; padding: 12px 26px; }
+    .btn-dark:hover{ background: #3a3a3c; transform: scale(1.02); }
+    .btn-white     { background: #fff; color: var(--dark); padding: 12px 26px; }
+    .btn-white:hover{ background: #f0f0f2; transform: scale(1.02); }
+    .btn-text      { background: transparent; color: var(--accent); padding: 0; font-size: 0.95rem; border: none; text-decoration: none; }
+    .btn-text::after { content: ' →'; }
+    .btn-text:hover { opacity: 0.75; }
+    .btn-sm        { padding: 9px 18px; font-size: 0.85rem; }
+
+    /* ═══════════════════════════════════════
+       NAV — Apple-style frosted glass
+    ═══════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      height: 48px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 22px;
+      background: rgba(245,245,247,0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem; letter-spacing: -0.01em; color: var(--dark); cursor: pointer;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 0.82rem; color: var(--mid); text-decoration: none;
+      cursor: pointer; transition: color 0.15s; letter-spacing: 0.01em;
+    }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .nav-cta { font-size: 0.82rem; padding: 7px 16px; }
+
+    @media(max-width:700px){
+      .nav-links { display: none; }
+    }
+
+    /* ── MOBILE HAMBURGER ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 4px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 2px;
+      background: var(--dark); border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+    @media(max-width:700px) {
+      .hamburger { display: flex; }
+      .nav-right .btn-text { display: none; }
+    }
+    .mobile-menu {
+      display: none; position: fixed; top: 48px; left: 0; right: 0;
+      background: rgba(245,245,247,0.97); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--rule); z-index: 899;
+      flex-direction: column; padding: 16px 22px 20px;
+    }
+    .mobile-menu.open { display: flex; animation: fadeIn 0.15s ease; }
+    .mobile-menu a {
+      padding: 13px 0; font-size: 1rem; color: var(--dark);
+      border-bottom: 1px solid var(--rule); cursor: pointer;
+      font-weight: 500; text-decoration: none;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu .btn { margin-top: 16px; width: 100%; justify-content: center; }
+
+    /* ── WHATSAPP FLOAT BUTTON ── */
+    .wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 800;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: #25D366; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      transition: transform 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+    .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+    .wa-tooltip {
+      position: absolute; right: 64px; background: var(--dark);
+      color: #fff; font-size: 0.75rem; font-weight: 500;
+      padding: 6px 12px; border-radius: 8px; white-space: nowrap;
+      opacity: 0; pointer-events: none; transition: opacity 0.15s;
+    }
+    .wa-float:hover .wa-tooltip { opacity: 1; }
+
+    /* ── PRODUCT DETAIL PAGE (page3) ── */
+    .prod-detail-hero {
+      padding: 100px 24px 60px; text-align: center;
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+    }
+    .prod-detail-hero .t-section { margin-bottom: 10px; }
+    .prod-detail-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem,5vw,4rem); letter-spacing: -0.02em; margin-bottom: 14px; }
+    .prod-detail-hero .t-body { max-width: 560px; margin: 0 auto 32px; font-size: 1.1rem; }
+    .prod-detail-hero .price-tag { font-family: 'DM Serif Display', serif; font-size: 3rem; color: var(--dark); margin-bottom: 6px; }
+    .prod-detail-hero .price-note { font-size: 0.82rem; color: var(--muted); margin-bottom: 28px; }
+    .detail-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .detail-body { max-width: 1100px; margin: 0 auto; padding: 60px 24px 100px; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .detail-section-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; color: var(--dark); }
+    .detail-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .detail-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; color: var(--mid); line-height: 1.6; }
+    .detail-list li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .detail-steps { display: flex; flex-direction: column; gap: 0; }
+    .detail-step { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--rule); align-items: start; }
+    .detail-step:last-child { border-bottom: none; }
+    .detail-step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--dark); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .detail-step h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+    .detail-step p  { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    .razorpay-box {
+      background: #fff; border: 1px solid var(--rule); border-radius: var(--r-xl);
+      padding: 36px 32px; margin-top: 40px;
+    }
+    .razorpay-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 6px; }
+    .razorpay-box p  { font-size: 0.88rem; color: var(--muted); margin-bottom: 24px; }
+    .razorpay-price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 20px; }
+    .rp-price { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--dark); }
+    .rp-strike { font-size: 1.1rem; color: var(--muted); text-decoration: line-through; }
+    .rp-save { font-size: 0.8rem; background: #dcfce7; color: #166534; padding: 3px 10px; border-radius: 980px; font-weight: 600; }
+    .rp-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    .rp-feat { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: var(--mid); }
+    .rp-feat::before { content: '✓'; color: var(--green); font-weight: 700; }
+    .rp-btn {
+      width: 100%; padding: 15px; background: var(--dark); color: #fff;
+      border: none; border-radius: 980px; font-family: 'DM Sans', sans-serif;
+      font-weight: 600; font-size: 1rem; cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .rp-btn:hover { background: #3a3a3c; transform: scale(1.01); }
+    .rp-btn.loading { opacity: 0.6; pointer-events: none; }
+    .rp-note { text-align: center; font-size: 0.72rem; color: var(--muted); margin-top: 10px; }
+    .rp-logos { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 14px; opacity: 0.5; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    @media(max-width:700px) {
+      .detail-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* ── BLOG PAGE (page4) ── */
+    .blog-hero {
+      padding: 120px 24px 60px; background: var(--bg3); text-align: center;
+    }
+    .blog-hero .t-section { color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+    .blog-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem,6vw,5rem); color: #fff; letter-spacing: -0.03em; margin-bottom: 14px; }
+    .blog-hero p  { color: rgba(255,255,255,0.55); font-size: 1rem; max-width: 480px; margin: 0 auto; }
+
+    .blog-grid-wrap { max-width: 1100px; margin: 0 auto; padding: 70px 24px 100px; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .blog-card {
+      background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-lg);
+      overflow: hidden; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .blog-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .blog-thumb {
+      aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem;
+    }
+    .blog-body { padding: 22px 20px; }
+    .blog-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .blog-title { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--dark); line-height: 1.3; margin-bottom: 8px; }
+    .blog-excerpt { font-size: 0.83rem; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+    .blog-meta { font-size: 0.72rem; color: var(--muted); display: flex; justify-content: space-between; }
+
+    @media(max-width:760px){ .blog-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:480px){ .blog-grid { grid-template-columns: 1fr; } }
+
+    /* ═══════════════════════════════════════
+       PAGES
+    ═══════════════════════════════════════ */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ═══════════════════════════════════════
+       ── PAGE 1: HOME ──
+    ═══════════════════════════════════════ */
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 100px 24px 80px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 60%);
+      position: relative; overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,113,227,0.07) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%,-55%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(0,113,227,0.08); border: 1px solid rgba(0,113,227,0.18);
+      border-radius: 980px; padding: 5px 14px;
+      font-size: 0.78rem; font-weight: 600; color: var(--accent);
+      letter-spacing: 0.04em; margin-bottom: 28px;
+      animation: fadeUp 0.35s ease both;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+
+    .hero h1 { animation: fadeUp 0.35s 0.05s ease both; margin-bottom: 22px; max-width: 860px; }
+    .hero-sub {
+      max-width: 560px; font-size: 1.18rem; color: var(--muted); line-height: 1.6;
+      margin-bottom: 40px; animation: fadeUp 0.35s 0.1s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp 0.35s 0.15s ease both; margin-bottom: 60px;
+    }
+    .hero-social-proof {
+      display: flex; align-items: center; gap: 16px;
+      animation: fadeUp 0.35s 0.2s ease both;
+    }
+    .proof-avatars { display: flex; }
+    .proof-avatars span {
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid #fff;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; color: #fff; font-weight: 700;
+      margin-left: -8px;
+    }
+    .proof-avatars span:first-child { margin-left: 0; }
+    .proof-text { font-size: 0.82rem; color: var(--muted); }
+    .proof-text strong { color: var(--dark); }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);} }
+
+    /* PRODUCT PREVIEW */
+    .preview-section {
+      background: var(--bg3); padding: 0;
+      overflow: hidden; position: relative;
+    }
+    .preview-inner {
+      max-width: 1200px; margin: 0 auto; padding: 100px 24px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .preview-text .t-section { margin-bottom: 14px; color: rgba(255,255,255,0.5); }
+    .preview-text .t-title   { color: #fff; margin-bottom: 18px; }
+    .preview-text .t-body    { color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+    .preview-mockup {
+      background: linear-gradient(135deg, #1c1c1e, #2c2c2e);
+      border-radius: var(--r-xl); border: 1px solid rgba(255,255,255,0.1);
+      padding: 32px; aspect-ratio: 4/3;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .mock-bar { display: flex; gap: 6px; margin-bottom: 20px; }
+    .mock-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mock-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; }
+    .mock-card {
+      background: rgba(255,255,255,0.06); border-radius: 12px; padding: 14px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .mock-line { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.12); }
+    .mock-line.w80 { width: 80%; }
+    .mock-line.w60 { width: 60%; }
+    .mock-line.w40 { width: 40%; }
+    .mock-stat { font-size: 1.4rem; font-weight: 700; color: #fff; }
+
+    @media(max-width:760px){
+      .preview-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* FEATURE GRID */
+    .features-section {
+      max-width: 1200px; margin: 0 auto; padding: 100px 24px;
+    }
+    .features-header { text-align: center; margin-bottom: 64px; }
+    .features-header .t-section { margin-bottom: 12px; }
+    .features-header .t-title   { margin-bottom: 14px; }
+
+    .feat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      border-radius: var(--r-lg); overflow: hidden;
+      border: 1px solid var(--rule);
+    }
+    .feat-tile {
+      background: var(--card); padding: 44px 36px;
+      transition: background 0.15s;
+    }
+    .feat-tile:hover { background: #f0f4ff; }
+    .feat-tile:nth-child(4), .feat-tile:nth-child(5), .feat-tile:nth-child(6) {
+      border-top: 1px solid var(--rule);
+    }
+    .feat-icon {
+      width: 52px; height: 52px; border-radius: 14px; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .feat-name { font-size: 1.1rem; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
+    .feat-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    @media(max-width:860px){
+      .feat-grid { grid-template-columns: 1fr 1fr; }
+      .feat-tile:nth-child(3){ border-top: 1px solid var(--rule); }
+    }
+    @media(max-width:540px){
+      .feat-grid { grid-template-columns: 1fr; }
+      .feat-tile:nth-child(n+2){ border-top: 1px solid var(--rule); }
+    }
+
+    /* NUMBERS */
+    .numbers-section {
+      background: var(--dark); padding: 80px 24px;
+    }
+    .numbers-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 2px;
+    }
+    .num-cell { text-align: center; padding: 40px 20px; }
+    .num-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem); color: #fff;
+      letter-spacing: -0.03em; margin-bottom: 8px;
+    }
+    .num-val span { color: var(--accent); }
+    .num-lbl { font-size: 0.82rem; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
+
+    @media(max-width:640px){
+      .numbers-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      max-width: 1200px; margin: 0 auto; padding: 100px 24px;
+    }
+    .testi-header { text-align: center; margin-bottom: 60px; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .testi-card {
+      background: var(--card); border: 1px solid var(--rule);
+      border-radius: var(--r-lg); padding: 32px 28px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .testi-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .testi-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 14px; }
+    .testi-text { font-size: 0.95rem; color: var(--mid); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem; color: #fff;
+    }
+    .testi-name { font-size: 0.88rem; font-weight: 600; color: var(--dark); }
+    .testi-role { font-size: 0.78rem; color: var(--muted); }
+
+    @media(max-width:760px){ .testi-grid { grid-template-columns: 1fr; } }
+
+    /* CTA BAND */
+    .cta-band {
+      background: var(--accent); padding: 80px 24px; text-align: center;
+    }
+    .cta-band h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem); color: #fff;
+      letter-spacing: -0.02em; margin-bottom: 14px;
+    }
+    .cta-band p { color: rgba(255,255,255,0.8); margin-bottom: 32px; font-size: 1.05rem; }
+    .cta-band-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ═══════════════════════════════════════
+       ── PAGE 2: PRODUCTS ──
+    ═══════════════════════════════════════ */
+    .products-hero {
+      background: var(--bg3); padding: 130px 24px 80px; text-align: center;
+    }
+    .products-hero .t-section { color: rgba(255,255,255,0.45); margin-bottom: 14px; }
+    .products-hero .t-hero    { color: #fff; margin-bottom: 18px; }
+    .products-hero .t-body    { color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto 40px; }
+
+    .product-cats {
+      display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+    .cat-pill {
+      font-size: 0.82rem; padding: 7px 18px; border-radius: 980px; cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);
+      background: transparent; font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+    }
+    .cat-pill.active, .cat-pill:hover { background: #fff; color: var(--dark); border-color: #fff; }
+
+    /* PRODUCT CARDS */
+    .products-grid-section {
+      max-width: 1200px; margin: 0 auto; padding: 80px 24px;
+    }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+    }
+    .prod-card {
+      background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-xl);
+      overflow: hidden; transition: transform 0.15s, box-shadow 0.15s;
+      display: flex; flex-direction: column;
+    }
+    .prod-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+    .prod-card.featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+    .prod-thumb {
+      aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; position: relative; overflow: hidden;
+    }
+    .prod-thumb-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: var(--accent); color: #fff;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 980px;
+    }
+    .prod-body { padding: 28px 24px; flex: 1; display: flex; flex-direction: column; }
+    .prod-cat {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .prod-name { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--dark); margin-bottom: 10px; line-height: 1.2; }
+    .prod-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 20px; flex: 1; }
+    .prod-features { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 7px; }
+    .prod-features li {
+      font-size: 0.83rem; color: var(--mid); display: flex; align-items: flex-start; gap: 8px;
+    }
+    .prod-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .prod-footer {
+      border-top: 1px solid var(--rule); padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .prod-price { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--dark); }
+    .prod-price sub { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--muted); vertical-align: baseline; }
+
+    @media(max-width:860px){ .products-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:540px){ .products-grid { grid-template-columns: 1fr; } }
+
+    /* COMPARISON TABLE */
+    .compare-section {
+      background: var(--bg3); padding: 100px 24px;
+    }
+    .compare-inner { max-width: 900px; margin: 0 auto; }
+    .compare-header { text-align: center; margin-bottom: 56px; }
+    .compare-header .t-section { color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+    .compare-header .t-title   { color: #fff; }
+    .compare-table {
+      width: 100%; border-collapse: collapse; border-radius: var(--r-lg); overflow: hidden;
+    }
+    .compare-table thead th {
+      padding: 20px 24px; text-align: left; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .compare-table thead th.highlight { color: var(--accent); background: rgba(0,113,227,0.1); }
+    .compare-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .compare-table tbody tr:last-child { border-bottom: none; }
+    .compare-table tbody td {
+      padding: 18px 24px; font-size: 0.9rem; color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.02);
+    }
+    .compare-table tbody td.highlight { background: rgba(0,113,227,0.07); color: #fff; }
+    .compare-table .check { color: var(--green); font-size: 1rem; }
+    .compare-table .cross { color: rgba(255,255,255,0.2); font-size: 1rem; }
+
+    /* FAQ */
+    .faq-section { max-width: 720px; margin: 0 auto; padding: 100px 24px; }
+    .faq-header { text-align: center; margin-bottom: 56px; }
+    .faq-item {
+      border-bottom: 1px solid var(--rule); overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; background: none; border: none; text-align: left; padding: 22px 0;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--dark);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .faq-q:hover { color: var(--accent); }
+    .faq-icon { font-size: 1.2rem; color: var(--muted); flex-shrink: 0; transition: transform 0.2s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+    .faq-a p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
+
+    /* ═══════════════════════════════════════
+       MODAL — post-mortem fixes applied:
+       - align-items: flex-start (scrollable)
+       - overflow-y: auto on overlay
+       - all listeners via addEventListener
+       - try-catch on all storage
+    ═══════════════════════════════════════ */
+    .overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.45); backdrop-filter: blur(12px);
+      align-items: flex-start; justify-content: center;
+      padding: 20px; overflow-y: auto;
+    }
+    .overlay.open { display: flex; animation: fadeIn 0.15s ease; }
+    @keyframes fadeIn { from{opacity:0;}to{opacity:1;} }
+    .modal {
+      background: #fff; border-radius: var(--r-xl); padding: 48px 40px 40px;
+      max-width: 480px; width: 100%; position: relative;
+      margin: auto; animation: slideUp 0.18s ease;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+    }
+    @keyframes slideUp { from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);} }
+    .modal-x {
+      position: absolute; top: 18px; right: 18px;
+      background: #f5f5f7; border: none; border-radius: 50%;
+      width: 30px; height: 30px; font-size: 0.9rem; color: var(--muted);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .modal-x:hover { background: #e8e8ed; }
+    .modal-eyebrow {
+      display: inline-block; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .modal h2 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 6px; color: var(--dark); }
+    .modal-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 28px; }
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 7px;
+    }
+    .field input, .field select {
+      width: 100%; padding: 12px 16px; border: 1.5px solid #d2d2d7;
+      border-radius: var(--r-sm); font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; color: var(--dark); background: #fff;
+      outline: none; transition: border-color 0.15s;
+    }
+    .field input:focus, .field select:focus { border-color: var(--accent); }
+    .field input::placeholder { color: #b0b0b8; }
+    .field select option { color: var(--dark); }
+    .modal-cta {
+      width: 100%; margin-top: 6px; padding: 14px;
+      background: var(--dark); color: #fff; border: none; border-radius: 980px;
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; transition: background 0.15s, transform 0.1s;
+    }
+    .modal-cta:hover { background: #3a3a3c; transform: scale(1.01); }
+    .modal-note { text-align: center; font-size: 0.72rem; color: #b0b0b8; margin-top: 12px; }
+    .success-view { display: none; text-align: center; padding: 16px 0; }
+    .success-view.show { display: block; animation: fadeUp 0.3s ease; }
+    .success-emoji { font-size: 3rem; margin-bottom: 16px; }
+    .success-view h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 8px; color: var(--dark); }
+    .success-view p  { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      background: #1d1d1f; padding: 48px 24px 36px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-inner { max-width: 1000px; margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+      padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 28px;
+    }
+    .footer-brand .logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: #fff; display: block; margin-bottom: 10px; }
+    .footer-brand .logo span { color: var(--accent); }
+    .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.65; }
+    .footer-col h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 14px; }
+    .footer-col a  { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 9px; cursor: pointer; transition: color 0.15s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-decoration: none; cursor: pointer; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+    @media(max-width:700px){
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:420px){
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       NAV
+  ══════════════════════════════════════ -->
+  <nav>
+    <div class="nav-logo" id="navLogo">SUFYX<span>-AI</span></div>
+    <div class="nav-links">
+      <a id="navHome">Home</a>
+      <a id="navProducts">Products</a>
+      <a id="navBlog">Blog</a>
+      <a id="navFeatures">Features</a>
+      <a id="navContact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn btn-text btn-sm" id="navLearnMore">Learn more</button>
+      <a href="agent-dashboard.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.3);border-radius:8px;color:#A78BFA;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.78rem;padding:8px 14px;text-decoration:none;transition:all 0.15s;" onmouseover="this.style.background='rgba(99,102,241,0.22)'" onmouseout="this.style.background='rgba(99,102,241,0.12)'">🤖 Agent</a>
+      <button class="btn btn-dark btn-sm nav-cta" id="navCta">Get started</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a id="mmHome">Home</a>
+    <a id="mmProducts">Products</a>
+    <a id="mmBlog">Blog</a>
+    <a id="mmContact">Contact</a>
+    <a href="agent-dashboard.html" target="_blank" style="color:#A78BFA;display:flex;align-items:center;gap:8px;">🤖 AI Agent Dashboard</a>
+    <button class="btn btn-dark" id="mmCta">Get started</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE 1 — HOME
+  ══════════════════════════════════════ -->
+  <div class="page active" id="page1">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-eyebrow">New — AI Digital Products Suite 2026</div>
+      <h1 class="t-hero">Intelligence,<br><em>delivered.</em></h1>
+      <p class="hero-sub">SUFYX-AI sells premium AI-powered digital products that automate your workflows, generate content, and grow your business — all ready to deploy in minutes.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="heroShop">Shop products</button>
+        <button class="btn btn-ghost" id="heroLearn">See what's inside</button>
+      </div>
+      <div class="hero-social-proof">
+        <div class="proof-avatars">
+          <span>AK</span><span>SR</span><span>MJ</span><span>PD</span>
+        </div>
+        <p class="proof-text"><strong>1,200+</strong> businesses already using SUFYX-AI</p>
+      </div>
+    </section>
+
+    <!-- PREVIEW -->
+    <div class="preview-section">
+      <div class="preview-inner">
+        <div class="preview-text">
+          <div class="t-section">Built for results</div>
+          <h2 class="t-title" style="color:#fff;">Real AI products.<br>Real outcomes.</h2>
+          <p class="t-body">Every product in the SUFYX-AI catalogue is production-ready, battle-tested, and built to generate measurable results from day one.</p>
+          <button class="btn btn-white" id="previewCta">Explore the catalogue</button>
+        </div>
+        <div class="preview-mockup">
+          <div>
+            <div class="mock-bar">
+              <div class="mock-dot" style="background:#ff5f57;"></div>
+              <div class="mock-dot" style="background:#febc2e;"></div>
+              <div class="mock-dot" style="background:#28c840;"></div>
+            </div>
+          </div>
+          <div class="mock-grid">
+            <div class="mock-card">
+              <div class="mock-stat" style="color:#0071E3;">+340%</div>
+              <div class="mock-line w80"></div>
+              <div class="mock-line w60"></div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-stat" style="color:#34C759;">$12.4k</div>
+              <div class="mock-line w80"></div>
+              <div class="mock-line w40"></div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-line w60"></div>
+              <div class="mock-line w80"></div>
+              <div class="mock-line w40"></div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-stat" style="color:#FF9F0A;">48hrs</div>
+              <div class="mock-line w80"></div>
+              <div class="mock-line w60"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <section class="features-section" id="features">
+      <div class="features-header">
+        <div class="t-section">Why SUFYX-AI</div>
+        <h2 class="t-title">Everything you need.<br>Nothing you don't.</h2>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-tile">
+          <div class="feat-icon" style="background:#EFF6FF;">🤖</div>
+          <div class="feat-name">Ready-to-Deploy AI</div>
+          <div class="feat-desc">Every product ships fully configured. No technical setup required — buy, download, and use within minutes.</div>
+        </div>
+        <div class="feat-tile">
+          <div class="feat-icon" style="background:#F0FDF4;">⚡</div>
+          <div class="feat-name">Instant Automation</div>
+          <div class="feat-desc">Pre-built workflows for Make, Zapier and n8n that connect your tools and eliminate manual work immediately.</div>
+        </div>
+        <div class="feat-tile">
+          <div class="feat-icon" style="background:#FFF7ED;">📈</div>
+          <div class="feat-name">Revenue-Focused</div>
+          <div class="feat-desc">Every product is designed around a single metric: growing your revenue or saving your time. Often both.</div>
+        </div>
+        <div class="feat-tile">
+          <div class="feat-icon" style="background:#FDF4FF;">🎨</div>
+          <div class="feat-name">White-Label Ready</div>
+          <div class="feat-desc">Resell our products under your own brand. Full white-label rights included with every bundle purchase.</div>
+        </div>
+        <div class="feat-tile">
+          <div class="feat-icon" style="background:#FFF1F2;">🔒</div>
+          <div class="feat-name">Lifetime Access</div>
+          <div class="feat-desc">Pay once, own forever. All future updates to your purchased products are included at no extra charge.</div>
+        </div>
+        <div class="feat-tile">
+          <div class="feat-icon" style="background:#F0F9FF;">💬</div>
+          <div class="feat-name">Priority Support</div>
+          <div class="feat-desc">Get help from our team via WhatsApp within 24 hours. We stay with you until your product is working perfectly.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUMBERS -->
+    <div class="numbers-section">
+      <div class="numbers-inner">
+        <div class="num-cell">
+          <div class="num-val">1.2<span>k+</span></div>
+          <div class="num-lbl">Happy Customers</div>
+        </div>
+        <div class="num-cell">
+          <div class="num-val">18<span>+</span></div>
+          <div class="num-lbl">AI Products</div>
+        </div>
+        <div class="num-cell">
+          <div class="num-val">4.9<span>★</span></div>
+          <div class="num-lbl">Average Rating</div>
+        </div>
+        <div class="num-cell">
+          <div class="num-val">48<span>h</span></div>
+          <div class="num-lbl">Avg. Time to ROI</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+      <div class="testi-header">
+        <div class="t-section" style="margin-bottom:12px;">Customer Stories</div>
+        <h2 class="t-title">Trusted by builders<br>around the world.</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"The AI content bot alone saved us 12 hours a week. We deployed it in under an hour and it paid for itself on day two."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2);">AR</div>
+            <div>
+              <div class="testi-name">Arjun Rao</div>
+              <div class="testi-role">Founder, GrowthStack</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Bought the WhatsApp automation bundle. My lead response time went from 6 hours to 30 seconds. Revenue is up 40% this quarter."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#11998e,#38ef7d);">SM</div>
+            <div>
+              <div class="testi-name">Sana Mirza</div>
+              <div class="testi-role">E-commerce Owner</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"The quality of the Zapier workflow templates is insane. Professional-grade systems at a fraction of what an agency would charge."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c);">PK</div>
+            <div>
+              <div class="testi-name">Priya Kapoor</div>
+              <div class="testi-role">Marketing Consultant</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <div class="cta-band">
+      <h2>Start automating today.</h2>
+      <p>Browse our full catalogue of AI products and pick what fits your business.</p>
+      <div class="cta-band-btns">
+        <button class="btn btn-white" id="ctaBandShop">Browse products</button>
+        <button class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,0.4);" id="ctaBandContact">Talk to us</button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="logo">SUFYX<span>-AI</span></span>
+            <p>Premium AI digital products for businesses that want to automate, scale, and grow — without the complexity.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Products</h4>
+            <a id="fp1">AI Content Bot</a>
+            <a id="fp2">WhatsApp Automations</a>
+            <a id="fp3">Lead Gen Kits</a>
+            <a id="fp4">Workflow Bundles</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a id="fAbout">About</a>
+            <a id="fBlog">Blog</a>
+            <a id="fAffiliate">Affiliates</a>
+            <a href="agent-dashboard.html" target="_blank" style="color:#A78BFA;">🤖 Agent Dashboard</a>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <a id="fContact">Contact</a>
+            <a href="https://wa.me/919027108764" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://www.instagram.com/sufiyann_9027?igsh=MTlmMWo4c3J5cjVkbA==" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">Copyright © 2026 SUFYX-AI. All rights reserved.</div>
+          <div class="footer-legal">
+            <a>Privacy Policy</a>
+            <a>Terms of Use</a>
+            <a>Refunds</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE 2 — PRODUCTS
+  ══════════════════════════════════════ -->
+  <div class="page" id="page2">
+
+    <!-- HERO -->
+    <div class="products-hero">
+      <div class="t-section">The Catalogue</div>
+      <h1 class="t-hero" style="color:#fff;margin-bottom:18px;">AI Products.<br><em style="color:#64d2ff;">Pick your weapon.</em></h1>
+      <p class="t-body" style="color:rgba(255,255,255,0.6);">Every product is built to deploy fast, perform immediately, and pay for itself within days.</p>
+      <div class="product-cats">
+        <button class="cat-pill active" data-cat="all">All Products</button>
+        <button class="cat-pill" data-cat="automation">Automation</button>
+        <button class="cat-pill" data-cat="content">Content AI</button>
+        <button class="cat-pill" data-cat="leads">Lead Gen</button>
+        <button class="cat-pill" data-cat="bundle">Bundles</button>
+        <button class="cat-pill" data-cat="playbook">📄 Playbooks</button>
+        <button class="cat-pill" data-cat="guide">🤖 Guides</button>
+      </div>
+    </div>
+
+    <!-- PRODUCTS GRID -->
+    <div class="products-grid-section">
+      <div class="products-grid" id="productsGrid">
+
+        <!-- ★ MAKE.COM PLAYBOOK — FEATURED NEW PRODUCT ★ -->
+        <div class="prod-card" data-cat="playbook" style="border:2px solid #FF6B00;background:linear-gradient(160deg,#0A0A0F,#0F0A1A);grid-column:1/-1;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+            <!-- Left: thumbnail -->
+            <div style="background:linear-gradient(135deg,#0A0A0F,#0F0A1A);padding:32px;display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(255,107,0,0.15);">
+              <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;border-radius:12px;overflow:hidden;">
+                <defs>
+                  <linearGradient id="pg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF6B00"/><stop offset="100%" stop-color="#FF9500"/></linearGradient>
+                </defs>
+                <rect width="600" height="320" fill="#07070D"/>
+                <g opacity="0.06" stroke="#FF6B00" stroke-width="0.5">
+                  <line x1="0" y1="64" x2="600" y2="64"/><line x1="0" y1="128" x2="600" y2="128"/><line x1="0" y1="192" x2="600" y2="192"/><line x1="0" y1="256" x2="600" y2="256"/>
+                  <line x1="100" y1="0" x2="100" y2="320"/><line x1="200" y1="0" x2="200" y2="320"/><line x1="300" y1="0" x2="300" y2="320"/><line x1="400" y1="0" x2="400" y2="320"/><line x1="500" y1="0" x2="500" y2="320"/>
+                </g>
+                <ellipse cx="100" cy="100" rx="160" ry="130" fill="#FF6B00" opacity="0.05"/>
+                <ellipse cx="520" cy="220" rx="140" ry="110" fill="#7C3AED" opacity="0.06"/>
+                <rect x="30" y="38" width="3" height="240" rx="1.5" fill="url(#pg)"/>
+                <rect x="44" y="38" width="110" height="16" rx="8" fill="rgba(255,107,0,0.1)" stroke="rgba(255,107,0,0.3)" stroke-width="0.5"/>
+                <text x="99" y="50" font-family="monospace" font-size="6" fill="#FF9500" text-anchor="middle" letter-spacing="2">SUFYX-AI</text>
+                <text x="44" y="90" font-family="Georgia,serif" font-size="36" fill="white" font-weight="700" letter-spacing="-1">MAKE.COM</text>
+                <text x="44" y="128" font-family="Georgia,serif" font-size="36" fill="url(#pg)" font-weight="700" letter-spacing="-1">AUTOMATION</text>
+                <text x="44" y="162" font-family="Georgia,serif" font-size="32" fill="white" font-weight="400" font-style="italic" letter-spacing="-1">Playbook</text>
+                <text x="44" y="192" font-family="monospace" font-size="8" fill="#475569">4 workflows · 20+ modules · 100% no-code</text>
+                <rect x="44" y="208" width="80" height="26" rx="8" fill="url(#pg)"/>
+                <text x="84" y="225" font-family="Georgia,serif" font-size="14" fill="#000" text-anchor="middle" font-weight="700">$47 only</text>
+                <!-- workflow dots -->
+                <rect x="340" y="28" width="108" height="54" rx="7" fill="#0D0D18" stroke="#1E293B" stroke-width="1"/><rect x="340" y="28" width="108" height="2" rx="1" fill="url(#pg)"/>
+                <text x="350" y="47" font-family="monospace" font-size="6" fill="#FF6B00" letter-spacing="1">01 INSTAGRAM</text>
+                <text x="350" y="62" font-family="Georgia,serif" font-size="11" fill="white" font-weight="700">Auto-Handler</text>
+                <rect x="462" y="28" width="108" height="54" rx="7" fill="#0D0D18" stroke="#1E293B" stroke-width="1"/><rect x="462" y="28" width="108" height="2" rx="1" fill="#2563EB"/>
+                <text x="472" y="47" font-family="monospace" font-size="6" fill="#60A5FA" letter-spacing="1">02 CONTENT</text>
+                <text x="472" y="62" font-family="Georgia,serif" font-size="11" fill="white" font-weight="700">AI Engine</text>
+                <rect x="340" y="96" width="108" height="54" rx="7" fill="#0D0D18" stroke="#1E293B" stroke-width="1"/><rect x="340" y="96" width="108" height="2" rx="1" fill="#10B981"/>
+                <text x="350" y="115" font-family="monospace" font-size="6" fill="#10B981" letter-spacing="1">03 LEAD GEN</text>
+                <text x="350" y="130" font-family="Georgia,serif" font-size="11" fill="white" font-weight="700">Machine</text>
+                <rect x="462" y="96" width="108" height="54" rx="7" fill="#0D0D18" stroke="#1E293B" stroke-width="1"/><rect x="462" y="96" width="108" height="2" rx="1" fill="#7C3AED"/>
+                <text x="472" y="115" font-family="monospace" font-size="6" fill="#A78BFA" letter-spacing="1">04 OUTREACH</text>
+                <text x="472" y="130" font-family="Georgia,serif" font-size="11" fill="white" font-weight="700">Cold Auto</text>
+                <!-- center hub -->
+                <circle cx="430" cy="205" r="40" fill="none" stroke="#1E293B" stroke-width="1"/>
+                <circle cx="430" cy="205" r="26" fill="none" stroke="#1E293B" stroke-width="1" stroke-dasharray="3,3"/>
+                <circle cx="430" cy="205" r="14" fill="#0D0D18" stroke="#FF6B00" stroke-width="1.2"/>
+                <text x="430" y="202" font-family="Georgia,serif" font-size="5" fill="#FF6B00" text-anchor="middle">MAKE</text>
+                <text x="430" y="212" font-family="Georgia,serif" font-size="5" fill="#FF6B00" text-anchor="middle">.COM</text>
+                <circle cx="430" cy="165" r="5" fill="#FF6B00"/><circle cx="470" cy="205" r="5" fill="#2563EB"/><circle cx="430" cy="245" r="5" fill="#10B981"/><circle cx="390" cy="205" r="5" fill="#7C3AED"/>
+                <!-- flow lines to cards -->
+                <line x1="394" y1="96" x2="430" y2="165" stroke="#FF6B00" stroke-width="0.8" stroke-opacity="0.3" stroke-dasharray="3,2"/>
+                <line x1="516" y1="96" x2="470" y2="205" stroke="#2563EB" stroke-width="0.8" stroke-opacity="0.3" stroke-dasharray="3,2"/>
+                <line x1="394" y1="150" x2="390" y2="205" stroke="#10B981" stroke-width="0.8" stroke-opacity="0.3" stroke-dasharray="3,2"/>
+                <line x1="516" y1="150" x2="430" y2="245" stroke="#7C3AED" stroke-width="0.8" stroke-opacity="0.3" stroke-dasharray="3,2"/>
+                <!-- tool icons bottom -->
+                <text x="340" y="295" font-family="monospace" font-size="7" fill="#334155">Make · Claude AI · ChatGPT · HubSpot · Gmail · Twilio</text>
+              </svg>
+            </div>
+            <!-- Right: product info -->
+            <div style="padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+                  <span style="background:rgba(255,107,0,0.12);border:1px solid rgba(255,107,0,0.3);color:#FF9500;font-family:'Space Mono',monospace;font-size:0.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:980px;">📄 PDF Playbook</span>
+                  <span style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);color:#34D399;font-family:'Space Mono',monospace;font-size:0.6rem;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:980px;">🔥 New Launch</span>
+                </div>
+                <div class="prod-name" style="font-size:1.6rem;margin-bottom:10px;color:#fff;">Make.com Automation Playbook</div>
+                <div class="prod-desc" style="color:rgba(255,255,255,0.55);margin-bottom:20px;">4 production-ready AI workflows — Instagram Handler, Content Engine, Lead Gen & Cold Outreach — that run 24/7 without you. Zero code. Instant results.</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+                  <li style="display:flex;gap:9px;font-size:0.85rem;color:rgba(255,255,255,0.6);"><span style="color:#10B981;font-weight:700;">✓</span>4 complete workflow blueprints</li>
+                  <li style="display:flex;gap:9px;font-size:0.85rem;color:rgba(255,255,255,0.6);"><span style="color:#10B981;font-weight:700;">✓</span>20+ module config reference</li>
+                  <li style="display:flex;gap:9px;font-size:0.85rem;color:rgba(255,255,255,0.6);"><span style="color:#10B981;font-weight:700;">✓</span>AI prompt templates included</li>
+                  <li style="display:flex;gap:9px;font-size:0.85rem;color:rgba(255,255,255,0.6);"><span style="color:#10B981;font-weight:700;">✓</span>30-day WhatsApp support</li>
+                </ul>
+              </div>
+              <div>
+                <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                  <span style="font-family:'DM Serif Display',serif;font-size:2.4rem;color:#fff;letter-spacing:-1px;">₹299</span>
+                  <span style="font-size:0.9rem;color:var(--muted);text-decoration:line-through;">₹599</span>
+                  <span style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);color:#34D399;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:980px;">50% OFF</span>
+                </div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                  <button class="btn btn-sm prod-buy" style="background:linear-gradient(135deg,#FF6B00,#FF9500);border:none;border-radius:980px;color:#000;font-weight:700;padding:12px 28px;font-size:0.9rem;cursor:pointer;">Get Playbook — ₹299</button>
+                  <button class="btn btn-ghost btn-sm playbook-detail-btn" style="border-color:rgba(255,107,0,0.3);color:#FF9500;">View full details →</button>
+                </div>
+                <div style="margin-top:10px;font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--muted);">🔒 One-time · Lifetime access · 7-day refund guarantee</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- WhatsApp AI Responder -->
+        <div class="prod-card featured" data-cat="automation">
+          <div class="prod-thumb" style="background:linear-gradient(135deg,#0071e3,#004eb5);">💬<div class="prod-thumb-badge">Best Seller</div></div>
+          <div class="prod-body">
+            <div class="prod-cat" style="color:#0071E3;">Automation</div>
+            <div class="prod-name">WhatsApp AI Responder</div>
+            <div class="prod-desc">Apne WhatsApp pe AI laga do — leads ko auto-reply karo, qualify karo aur appointment book karo 24/7 bina kisi ke.</div>
+            <ul class="prod-features">
+              <li>AI auto-reply — instant response</li>
+              <li>Leads automatically qualify ho</li>
+              <li>Appointment booking built-in</li>
+              <li>Google Sheets mein data log</li>
+              <li>30-day WhatsApp support</li>
+            </ul>
+          </div>
+          <div class="prod-footer">
+            <div><div class="prod-price">₹499<sub style="font-size:0.7rem;color:var(--muted);text-decoration:line-through;margin-left:5px;">₹999</sub></div><div style="font-size:0.65rem;color:var(--green);font-weight:600;">50% OFF</div></div>
+            <button class="btn btn-primary btn-sm prod-buy">Buy now →</button>
+          </div>
+        </div>
+
+        <!-- AI Content Engine -->
+        <div class="prod-card" data-cat="content">
+          <div class="prod-thumb" style="background:linear-gradient(135deg,#bf5af2,#7c3aed);">✍️</div>
+          <div class="prod-body">
+            <div class="prod-cat" style="color:#7c3aed;">Content AI</div>
+            <div class="prod-name">AI Content Engine</div>
+            <div class="prod-desc">Ek ghante mein 30 din ka content banao — Instagram captions, emails, reels scripts. GPT-4 powered.</div>
+            <ul class="prod-features">
+              <li>100+ ready-to-use templates</li>
+              <li>Instagram, LinkedIn, Email sab ke liye</li>
+              <li>Brand voice training included</li>
+              <li>Hashtag generator tool</li>
+              <li>Lifetime updates free</li>
+            </ul>
+          </div>
+          <div class="prod-footer">
+            <div><div class="prod-price">₹349<sub style="font-size:0.7rem;color:var(--muted);text-decoration:line-through;margin-left:5px;">₹699</sub></div><div style="font-size:0.65rem;color:var(--green);font-weight:600;">50% OFF</div></div>
+            <button class="btn btn-dark btn-sm prod-buy">Buy now →</button>
+          </div>
+        </div>
+
+        <!-- Lead Capture System -->
+        <div class="prod-card" data-cat="leads">
+          <div class="prod-thumb" style="background:linear-gradient(135deg,#34c759,#1a8c35);">🎯</div>
+          <div class="prod-body">
+            <div class="prod-cat" style="color:#1a8c35;">Lead Generation</div>
+            <div class="prod-name">Lead Capture System</div>
+            <div class="prod-desc">Sote waqt bhi leads capture ho, qualify ho aur nurture ho. Landing page se WhatsApp follow-up tak poora funnel.</div>
+            <ul class="prod-features">
+              <li>AI-powered landing page</li>
+              <li>7-email drip sequence</li>
+              <li>Lead scoring AI model</li>
+              <li>Auto WhatsApp follow-up</li>
+              <li>Analytics dashboard</li>
+            </ul>
+          </div>
+          <div class="prod-footer">
+            <div><div class="prod-price">₹599<sub style="font-size:0.7rem;color:var(--muted);text-decoration:line-through;margin-left:5px;">₹1,199</sub></div><div style="font-size:0.65rem;color:var(--green);font-weight:600;">50% OFF</div></div>
+            <button class="btn btn-dark btn-sm prod-buy">Buy now →</button>
+          </div>
+        </div>
+
+        <!-- Zapier Mega Pack -->
+        <div class="prod-card" data-cat="automation">
+          <div class="prod-thumb" style="background:linear-gradient(135deg,#ff9f0a,#c65000);">⚙️</div>
+          <div class="prod-body">
+            <div class="prod-cat" style="color:#c65000;">Automation</div>
+            <div class="prod-name">Zapier Mega Pack</div>
+            <div class="prod-desc">50+ ready-made Zapier workflows — import karo aur seedha chala do. E-commerce, agency, freelancer — sab ke liye.</div>
+            <ul class="prod-features">
+              <li>50+ import-ready workflows</li>
+              <li>CRM + email + sheets connect</li>
+              <li>Har workflow ka video guide</li>
+              <li>Slack + email notifications</li>
+              <li>Monthly naye workflows add</li>
+            </ul>
+          </div>
+          <div class="prod-footer">
+            <div><div class="prod-price">₹199<sub style="font-size:0.7rem;color:var(--muted);text-decoration:line-through;margin-left:5px;">₹399</sub></div><div style="font-size:0.65rem;color:var(--green);font-weight:600;">50% OFF</div></div>
+            <button class="btn btn-dark btn-sm prod-buy">Buy now →</button>
+          </div>
+        </div>
+
+        <!-- Instagram Growth Kit -->
+        <div class="prod-card" data-cat="content">
+          <div class="prod-thumb" style="background:linear-gradient(135deg,#ff375f,#8c0019);">📸</div>
+          <div class="prod-body">
+            <div class="prod-cat" style="color:#ff375f;">Content AI</div>
+            <div class="prod-name">Instagram Growth Kit</div>
+            <div class="prod-desc">AI captions, hashtag strategy, story templates aur auto-DM bot — sab ek jagah. Reels se real followers tak.</div>
+            <ul class="prod-features">
+              <li>30 din ke captions AI se</li>
+              <li>200+ story templates</li>
+              <li>Auto-DM bot setup guide</li>
+              <li>Hashtag research tool</li>
+              <li>Reel script templates</li>
+            </ul>
+          </div>
+          <div class="prod-footer">
+            <div><div class="prod-price">₹249<sub style="font-size:0.7rem;color:var(--muted);text-decoration:line-through;margin-left:5px;">₹499</sub></div><div style="font-size:0.65rem;color:var(--green);font-weight:600;">50% OFF</div></div>
+            <button class="btn btn-dark btn-sm prod-buy">Buy now →</button>
+          </div>
+        </div>
+
+        <!-- AI AGENT BUILDER GUIDE — NEW -->
+        <div class="prod-card" data-cat="guide" style="border:2px solid #10B981;background:linear-gradient(160deg,#020F0A,#041510);">
+          <div class="prod-thumb" style="background:linear-gradient(135deg,#022c1a,#041f12);">
+            🤖
+            <div class="prod-thumb-badge" style="background:#10B981;color:#000;">New</div>
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat" style="color:#10B981;">Code Guide · PDF</div>
+            <div class="prod-name" style="color:#fff;">AI Agent Builder Guide</div>
+            <div class="prod-desc" style="color:rgba(255,255,255,0.55);">ChatGPT + Claude se apna khud ka AI agent banao. 6 chapters, 15+ working code snippets, real proof ke saath.</div>
+            <ul class="prod-features" style="--check-color:#10B981;">
+              <li style="color:rgba(255,255,255,0.6);">GPT-4o Function Calling — full code</li>
+              <li style="color:rgba(255,255,255,0.6);">Claude Tool Use + reasoning trace</li>
+              <li style="color:rgba(255,255,255,0.6);">Memory system + Multi-Agent pattern</li>
+              <li style="color:rgba(255,255,255,0.6);">Free deploy — Replit, Railway, Make</li>
+              <li style="color:rgba(255,255,255,0.6);">100% Beginner friendly</li>
+            </ul>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;">
+              <span style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:0.58rem;color:#34D399;">6 Chapters</span>
+              <span style="background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);border-radius:6px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:0.58rem;color:#60A5FA;">15+ Code</span>
+              <span style="background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.2);border-radius:6px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:0.58rem;color:#A78BFA;">3 Agents</span>
+            </div>
+          </div>
+          <div class="prod-footer" style="border-top:1px solid rgba(16,185,129,0.15);">
+            <div><div class="prod-price" style="color:#34D399;">₹399<sub style="font-size:0.7rem;color:var(--muted);text-decoration:line-through;margin-left:5px;">₹799</sub></div><div style="font-size:0.65rem;color:#10B981;font-weight:600;">50% OFF · Tested code</div></div>
+            <button class="btn btn-sm prod-buy" style="background:linear-gradient(135deg,#10B981,#059669);border:none;border-radius:980px;color:#fff;font-weight:700;padding:10px 20px;font-size:0.85rem;cursor:pointer;">Get Guide →</button>
+          </div>
+        </div>
+
+        <!-- Complete Bundle -->
+        <div class="prod-card" data-cat="bundle" style="background:linear-gradient(160deg,#f5f3ff,#eff6ff);">
+          <div class="prod-thumb" style="background:linear-gradient(135deg,#1d1d1f,#3a3a3c);">🚀<div class="prod-thumb-badge" style="background:var(--gold);color:#000;">Best Value</div></div>
+          <div class="prod-body">
+            <div class="prod-cat" style="color:var(--gold);">Bundle</div>
+            <div class="prod-name">Complete AI Business Stack</div>
+            <div class="prod-desc">Saare 7 products ek saath — automation, content, leads, agent guide aur playbook. White-label rights bhi.</div>
+            <ul class="prod-features">
+              <li>Saare 7 products included</li>
+              <li>White-label rights — resell kar sakte ho</li>
+              <li>Priority WhatsApp support</li>
+              <li>Onboarding call included</li>
+            </ul>
+          </div>
+          <div class="prod-footer">
+            <div><div class="prod-price" style="color:var(--accent);">₹999<sub style="font-size:0.7rem;color:var(--muted);text-decoration:line-through;margin-left:5px;">₹2,499</sub></div><div style="font-size:0.65rem;color:var(--green);font-weight:600;">60% OFF · Sabse best deal</div></div>
+            <button class="btn btn-primary btn-sm prod-buy">Buy bundle →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+
+    <!-- COMPARISON TABLE -->
+    <div class="compare-section">
+      <div class="compare-inner">
+        <div class="compare-header">
+          <div class="t-section">Comparison</div>
+          <h2 class="t-title">SUFYX-AI vs. hiring an agency</h2>
+        </div>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>What you get</th>
+              <th>Agency</th>
+              <th class="highlight">SUFYX-AI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Setup time</td><td>2–6 weeks</td><td class="highlight">Under 1 hour</td></tr>
+            <tr><td>Cost</td><td>$2,000–$10,000</td><td class="highlight">From $47</td></tr>
+            <tr><td>Ownership</td><td>You rent it</td><td class="highlight"><span class="check">✓</span> You own it forever</td></tr>
+            <tr><td>Future updates</td><td><span class="cross">✕</span> Extra cost</td><td class="highlight"><span class="check">✓</span> Included free</td></tr>
+            <tr><td>White-label rights</td><td><span class="cross">✕</span> Never</td><td class="highlight"><span class="check">✓</span> Bundle only</td></tr>
+            <tr><td>Support</td><td>Ticket system</td><td class="highlight">Direct WhatsApp</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <div class="faq-header">
+        <div class="t-section" style="margin-bottom:12px;">FAQ</div>
+        <h2 class="t-title">Common questions</h2>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need technical skills to use these products?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>No technical skills required. Every product includes step-by-step video guides and written documentation. If you get stuck, our WhatsApp support team will walk you through it personally.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is this a subscription or a one-time payment?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>One-time payment. You pay once and own the product forever, including all future updates. No monthly fees, ever.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What tools do I need to run these automations?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Most products work with free-tier accounts on Make.com, Zapier, or n8n. We specify exact requirements on each product page. The AI content products require an OpenAI API key (approximately $5/month).</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I get a refund?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Yes — we offer a 7-day refund policy if the product does not work as described. Contact us on WhatsApp with your order details and we will process your refund within 24 hours.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What does white-label mean?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>White-label rights (included in the Bundle) allow you to rebrand our products with your own company name and sell them to your clients as your own service, keeping 100% of the revenue.</p></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-band">
+      <h2>Ready to build smarter?</h2>
+      <p>Pick a product, deploy today, and see results this week.</p>
+      <div class="cta-band-btns">
+        <button class="btn btn-white" id="p2CtaBack">← Back to home</button>
+        <button class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,0.4);" id="p2CtaContact">Talk to us</button>
+      </div>
+    </div>
+
+    <!-- FOOTER (repeated) -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="logo">SUFYX<span style="color:var(--accent);">-AI</span></span>
+            <p>Premium AI digital products for businesses that want to automate, scale, and grow.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Products</h4>
+            <a>AI Content Bot</a>
+            <a>WhatsApp Automations</a>
+            <a>Lead Gen Kits</a>
+            <a>Workflow Bundles</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a>About</a>
+            <a>Blog</a>
+            <a>Affiliates</a>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <a>Contact</a>
+            <a href="https://wa.me/919027108764" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://www.instagram.com/sufiyann_9027?igsh=MTlmMWo4c3J5cjVkbA==" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">Copyright © 2026 SUFYX-AI. All rights reserved.</div>
+          <div class="footer-legal">
+            <a>Privacy Policy</a>
+            <a>Terms of Use</a>
+            <a>Refunds</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- WHATSAPP FLOAT BUTTON -->
+  <a class="wa-float" id="waFloat" href="https://wa.me/919027108764" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" style="bottom:152px;">
+    <div class="wa-tooltip">Chat on WhatsApp</div>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- INSTAGRAM FLOAT BUTTON -->
+  <a class="wa-float" id="igFloat" href="https://www.instagram.com/sufiyann_9027?igsh=MTlmMWo4c3J5cjVkbA==" target="_blank" rel="noopener" aria-label="Follow on Instagram"
+    style="bottom:88px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);box-shadow:0 4px 20px rgba(220,39,67,0.4);">
+    <div class="wa-tooltip">Follow on Instagram</div>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="fill:#fff;width:26px;height:26px;">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+  </a>
+
+  <!-- ══════════════════════════════════════
+       PAGE 3 — PRODUCT DETAIL
+  ══════════════════════════════════════ -->
+  <div class="page" id="page3">
+    <div class="prod-detail-hero">
+      <div class="t-section" id="detailCat">Automation</div>
+      <h1 id="detailName">WhatsApp AI Responder</h1>
+      <p class="t-body" id="detailDesc">Automatically reply to leads, qualify customers, and book appointments 24/7 via WhatsApp — no human needed.</p>
+      <div class="price-tag" id="detailPrice">$97</div>
+      <div class="price-note">One-time payment · Lifetime access · Instant delivery</div>
+      <div class="detail-actions">
+        <button class="btn btn-primary" id="detailBuyBtn">Buy now — $97</button>
+        <button class="btn btn-ghost" id="detailBackBtn">← Back to products</button>
+      </div>
+    </div>
+
+    <div class="detail-body">
+      <div class="detail-grid">
+        <div>
+          <div class="detail-section-title">What's included</div>
+          <ul class="detail-list" id="detailFeatures">
+            <li>Auto-reply with AI trained on your FAQ</li>
+            <li>Lead qualification conversation flow</li>
+            <li>Appointment booking integration</li>
+            <li>CRM data sync (Google Sheets / Notion)</li>
+            <li>Step-by-step setup video (45 min)</li>
+            <li>WhatsApp support for 30 days</li>
+          </ul>
+
+          <div class="detail-section-title" style="margin-top:40px;">How it works</div>
+          <div class="detail-steps">
+            <div class="detail-step">
+              <div class="detail-step-num">1</div>
+              <div><h4>Download & open</h4><p>You get a ZIP file with the full workflow template and documentation. Open in Make.com, Zapier, or n8n.</p></div>
+            </div>
+            <div class="detail-step">
+              <div class="detail-step-num">2</div>
+              <div><h4>Connect WhatsApp</h4><p>Link your WhatsApp Business account using the included API setup guide. Takes about 10 minutes.</p></div>
+            </div>
+            <div class="detail-step">
+              <div class="detail-step-num">3</div>
+              <div><h4>Customise & go live</h4><p>Edit the message templates with your brand voice, test with our checklist, and switch it on.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!-- RAZORPAY PAYMENT BOX -->
+          <div class="razorpay-box">
+            <h3>Complete your purchase</h3>
+            <p>Secure checkout powered by Razorpay. UPI, cards, net banking — all accepted.</p>
+            <div class="razorpay-price-row">
+              <div class="rp-price" id="rpPrice">₹8,100</div>
+              <div class="rp-strike">₹16,000</div>
+              <div class="rp-save">Save 50%</div>
+            </div>
+            <div class="rp-features">
+              <div class="rp-feat">Lifetime access — pay once</div>
+              <div class="rp-feat">Instant delivery to your email</div>
+              <div class="rp-feat">30-day WhatsApp support</div>
+              <div class="rp-feat">7-day refund guarantee</div>
+            </div>
+            <button class="rp-btn" id="rzpPayBtn">
+              <span>🔒</span> Pay securely with Razorpay
+            </button>
+            <div class="rp-note">By purchasing you agree to our Terms of Use. All sales final after 7 days.</div>
+            <div class="rp-logos">
+              <span>UPI</span>·<span>Visa</span>·<span>Mastercard</span>·<span>RuPay</span>·<span>Net Banking</span>
+            </div>
+          </div>
+
+          <!-- GUARANTEE -->
+          <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--r-md);padding:22px 20px;margin-top:16px;">
+            <div style="font-weight:700;font-size:0.95rem;color:#166534;margin-bottom:6px;">🛡️ 7-Day Money-Back Guarantee</div>
+            <div style="font-size:0.85rem;color:#166534;line-height:1.6;">If this product doesn't work as described, message us on WhatsApp within 7 days and we'll refund you in full — no questions asked.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="logo" style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#fff;display:block;margin-bottom:10px;">SUFYX<span style="color:var(--accent);">-AI</span></span>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.65;">Premium AI digital products for businesses that want to automate, scale, and grow.</p>
+          </div>
+          <div class="footer-col"><h4>Support</h4>
+            <a href="https://wa.me/919027108764" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://www.instagram.com/sufiyann_9027?igsh=MTlmMWo4c3J5cjVkbA==" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">Copyright © 2026 SUFYX-AI. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE 4 — BLOG
+  ══════════════════════════════════════ -->
+  <div class="page" id="page4">
+    <div class="blog-hero">
+      <div class="t-section">The SUFYX-AI Blog</div>
+      <h1>Learn. Automate.<br>Grow.</h1>
+      <p>Practical guides on AI automation, WhatsApp marketing, and digital product business.</p>
+    </div>
+
+    <div class="blog-grid-wrap">
+      <div class="blog-grid">
+        <div class="blog-card" data-post="1">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);">🤖</div>
+          <div class="blog-body">
+            <div class="blog-tag">AI Automation</div>
+            <div class="blog-title">How to Set Up a WhatsApp AI Bot in Under 1 Hour</div>
+            <div class="blog-excerpt">A complete step-by-step guide to automating your WhatsApp responses using Make.com and GPT-4 — no coding required.</div>
+            <div class="blog-meta"><span>March 2026</span><span>8 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card" data-post="2">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);">📈</div>
+          <div class="blog-body">
+            <div class="blog-tag">Lead Generation</div>
+            <div class="blog-title">5 AI Workflows That Doubled Our Lead Conversion Rate</div>
+            <div class="blog-excerpt">The exact automations we use to capture, qualify, and follow up with leads 10x faster than manual outreach.</div>
+            <div class="blog-meta"><span>March 2026</span><span>6 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card" data-post="3">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#fdf4ff,#f3e8ff);">✍️</div>
+          <div class="blog-body">
+            <div class="blog-tag">Content AI</div>
+            <div class="blog-title">Generate 30 Days of Instagram Content in 45 Minutes</div>
+            <div class="blog-excerpt">The exact prompt framework and workflow we use to produce a full month of social content without writer's block.</div>
+            <div class="blog-meta"><span>Feb 2026</span><span>5 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card" data-post="4">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#fff7ed,#fed7aa);">💰</div>
+          <div class="blog-body">
+            <div class="blog-tag">Business</div>
+            <div class="blog-title">How to Sell AI Digital Products as a Freelancer in India</div>
+            <div class="blog-excerpt">A beginner's guide to building a side income selling AI automation products — with zero upfront investment.</div>
+            <div class="blog-meta"><span>Feb 2026</span><span>7 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card" data-post="5">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#fff1f2,#fecdd3);">🔧</div>
+          <div class="blog-body">
+            <div class="blog-tag">Tutorial</div>
+            <div class="blog-title">n8n vs Make vs Zapier — Which Should You Use in 2026?</div>
+            <div class="blog-excerpt">An honest comparison of the three most popular no-code automation platforms, with real pricing and use-case breakdowns.</div>
+            <div class="blog-meta"><span>Jan 2026</span><span>9 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card" data-post="6">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#f0f9ff,#bae6fd);">🚀</div>
+          <div class="blog-body">
+            <div class="blog-tag">Strategy</div>
+            <div class="blog-title">The $0 Marketing Strategy That Got Us 1,200 Customers</div>
+            <div class="blog-excerpt">How we grew SUFYX-AI using only WhatsApp, Instagram, and a referral system — with no paid advertising.</div>
+            <div class="blog-meta"><span>Jan 2026</span><span>6 min read</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="logo" style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#fff;display:block;margin-bottom:10px;">SUFYX<span style="color:var(--accent);">-AI</span></span>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.65;">Premium AI digital products for businesses that want to automate, scale, and grow.</p>
+          </div>
+          <div class="footer-col"><h4>Navigation</h4>
+            <a id="blogFooterHome">Home</a>
+            <a id="blogFooterProducts">Products</a>
+          </div>
+          <div class="footer-col"><h4>Support</h4>
+            <a href="https://wa.me/919027108764" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://www.instagram.com/sufiyann_9027?igsh=MTlmMWo4c3J5cjVkbA==" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">Copyright © 2026 SUFYX-AI. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE 5 — MAKE.COM PLAYBOOK DETAIL
+  ══════════════════════════════════════ -->
+  <div class="page" id="page5">
+    <!-- HERO -->
+    <div style="background:#07070D;padding:100px 5% 60px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,107,0,0.12);">
+      <div style="position:absolute;width:600px;height:400px;background:#FF6B00;opacity:0.04;border-radius:50%;filter:blur(100px);top:-100px;left:50%;transform:translateX(-50%);pointer-events:none;"></div>
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,107,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,107,0,0.03) 1px,transparent 1px);background-size:80px 80px;pointer-events:none;"></div>
+      <button class="page-back" id="playbackBackBtn" style="position:relative;z-index:2;margin-bottom:36px;background:rgba(255,107,0,0.08);border-color:rgba(255,107,0,0.25);color:#FF9500;">← Back to Products</button>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,0,0.08);border:1px solid rgba(255,107,0,0.25);border-radius:980px;padding:5px 16px;font-family:'Space Mono',monospace;font-size:0.65rem;color:#FF9500;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;position:relative;z-index:2;">📄 PDF Playbook · SUFYX-AI</div>
+      <h1 style="font-family:'DM Serif Display',serif;font-size:clamp(2.5rem,6vw,5.5rem);color:#fff;letter-spacing:-0.03em;line-height:1.0;margin-bottom:16px;position:relative;z-index:2;">Make.com<br><span style="color:#FF6B00;font-style:italic;">Automation</span> Playbook</h1>
+      <p style="color:rgba(255,255,255,0.5);font-size:1.05rem;max-width:540px;margin:0 auto 36px;line-height:1.7;position:relative;z-index:2;">4 production-ready AI workflows for Instagram, Content, Lead Gen & Cold Outreach — zero code, instant results.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;position:relative;z-index:2;">
+        <button class="btn btn-primary playbook-buy-btn" style="background:linear-gradient(135deg,#FF6B00,#FF9500);border:none;color:#000;font-weight:700;padding:16px 36px;font-size:1rem;border-radius:980px;cursor:pointer;box-shadow:0 4px 28px rgba(255,107,0,0.35);">Get Playbook — ₹299 →</button>
+        <a href="https://wa.me/919027108764" target="_blank" rel="noopener" class="btn btn-ghost" style="padding:16px 28px;font-size:1rem;border-radius:980px;display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);text-decoration:none;">💬 Ask on WhatsApp</a>
+      </div>
+      <!-- stat strip -->
+      <div style="display:inline-flex;gap:0;border:1px solid rgba(255,107,0,0.2);border-radius:14px;overflow:hidden;position:relative;z-index:2;">
+        <div style="padding:14px 24px;background:rgba(255,107,0,0.06);border-right:1px solid rgba(255,107,0,0.15);text-align:center;">
+          <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:#FF6B00;">4</div>
+          <div style="font-family:'Space Mono',monospace;font-size:0.58rem;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;">Workflows</div>
+        </div>
+        <div style="padding:14px 24px;background:rgba(255,107,0,0.06);border-right:1px solid rgba(255,107,0,0.15);text-align:center;">
+          <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:#fff;">20+</div>
+          <div style="font-family:'Space Mono',monospace;font-size:0.58rem;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;">Modules</div>
+        </div>
+        <div style="padding:14px 24px;background:rgba(255,107,0,0.06);border-right:1px solid rgba(255,107,0,0.15);text-align:center;">
+          <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:#34D399;">100%</div>
+          <div style="font-family:'Space Mono',monospace;font-size:0.58rem;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;">No-Code</div>
+        </div>
+        <div style="padding:14px 24px;background:rgba(255,107,0,0.06);text-align:center;">
+          <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:#60A5FA;">₹299</div>
+          <div style="font-family:'Space Mono',monospace;font-size:0.58rem;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;">One-Time</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 WORKFLOWS -->
+    <div style="max-width:1100px;margin:0 auto;padding:80px 5%;">
+      <div class="s-label">The 4 Workflows</div>
+      <div class="s-title" style="margin-bottom:40px;">Everything runs on <em>autopilot.</em></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--border2);border-radius:20px;overflow:hidden;">
+        <div style="background:var(--surface2);padding:36px 32px;border-right:1px solid var(--border2);position:relative;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#FF6B00,#FF9500);"></div>
+          <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:#FF6B00;letter-spacing:3px;margin-bottom:14px;">WORKFLOW 01</div>
+          <div style="font-size:2rem;margin-bottom:14px;">📸</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:10px;">Instagram Auto-Handler</div>
+          <div style="font-size:0.88rem;color:var(--muted);line-height:1.7;margin-bottom:18px;">Monitors DMs & comments, generates AI replies via Claude, adds human-like delay, sends & logs to Google Sheets.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Instagram</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Claude AI</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Delay</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Sheets</span>
+          </div>
+        </div>
+        <div style="background:var(--surface2);padding:36px 32px;position:relative;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2563EB,#60A5FA);"></div>
+          <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:#60A5FA;letter-spacing:3px;margin-bottom:14px;">WORKFLOW 02</div>
+          <div style="font-size:2rem;margin-bottom:14px;">✍️</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:10px;">AI Content Engine</div>
+          <div style="font-size:0.88rem;color:var(--muted);line-height:1.7;margin-bottom:18px;">Drop a topic into Airtable → AI generates captions, hashtags & DALL-E image → Buffer schedules at optimal times.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Airtable</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Claude AI</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">DALL-E</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Buffer</span>
+          </div>
+        </div>
+        <div style="background:var(--surface2);padding:36px 32px;border-top:1px solid var(--border2);border-right:1px solid var(--border2);position:relative;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10B981,#34D399);"></div>
+          <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:#10B981;letter-spacing:3px;margin-bottom:14px;">WORKFLOW 03</div>
+          <div style="font-size:2rem;margin-bottom:14px;">🎯</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:10px;">Lead Generation Machine</div>
+          <div style="font-size:0.88rem;color:var(--muted);line-height:1.7;margin-bottom:18px;">LinkedIn scrape → AI scores 1–10 → Hunter.io verifies emails → Filter 7+ → HubSpot CRM → Personalised Gmail.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">LinkedIn</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">AI Score</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Hunter.io</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">HubSpot</span>
+          </div>
+        </div>
+        <div style="background:var(--surface2);padding:36px 32px;border-top:1px solid var(--border2);position:relative;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7C3AED,#A78BFA);"></div>
+          <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:#A78BFA;letter-spacing:3px;margin-bottom:14px;">WORKFLOW 04</div>
+          <div style="font-size:2rem;margin-bottom:14px;">📬</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:10px;">Cold Outreach Automation</div>
+          <div style="font-size:0.88rem;color:var(--muted);line-height:1.7;margin-bottom:18px;">HubSpot leads → Claude writes cold email → Gmail → 3-day wait → Follow-up → Calendly booked → Twilio SMS fires.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">HubSpot</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Claude AI</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Gmail</span>
+            <span style="color:var(--muted);font-size:0.7rem;align-self:center;">→</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);">Twilio SMS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING + CTA -->
+    <div style="background:var(--surface);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:80px 5%;text-align:center;">
+      <div style="max-width:520px;margin:0 auto;">
+        <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(255,107,0,0.7);letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;">One-Time Price</div>
+        <div style="display:flex;align-items:baseline;gap:14px;justify-content:center;margin-bottom:8px;">
+          <span style="font-family:'DM Serif Display',serif;font-size:4.5rem;color:#fff;letter-spacing:-3px;line-height:1;">₹299</span>
+          <span style="font-size:1.1rem;color:var(--muted);text-decoration:line-through;">₹599</span>
+          <span style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);color:#34D399;font-size:0.75rem;font-weight:700;padding:4px 12px;border-radius:980px;">50% OFF</span>
+        </div>
+        <div style="font-size:0.82rem;color:var(--muted);margin-bottom:28px;">Ek baar payment · Lifetime access · Sabhi updates free</div>
+        <button class="btn btn-primary playbook-buy-btn" style="width:100%;padding:17px;background:linear-gradient(135deg,#FF6B00,#FF9500);border:none;color:#000;font-weight:700;font-size:1rem;border-radius:980px;cursor:pointer;box-shadow:0 4px 28px rgba(255,107,0,0.3);margin-bottom:14px;">🔒 Get the Playbook — ₹299</button>
+        <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--muted);">UPI · Visa · Mastercard · RuPay · Net Banking · Razorpay</div>
+        <div style="margin-top:16px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.18);border-radius:12px;padding:16px;display:flex;gap:12px;align-items:flex-start;text-align:left;">
+          <span style="font-size:1.3rem;">🛡️</span>
+          <div><div style="font-size:0.85rem;font-weight:700;color:#34D399;margin-bottom:4px;">7-Day Refund Guarantee</div><div style="font-size:0.8rem;color:var(--muted);line-height:1.6;">Doesn't work as described? Message us on WhatsApp within 7 days for a full refund, no questions asked.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="logo" style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#fff;display:block;margin-bottom:10px;">SUFYX<span style="color:var(--accent);">-AI</span></span>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.65;">Premium AI digital products.</p>
+          </div>
+          <div class="footer-col"><h4>Navigate</h4>
+            <a id="p5FooterHome">Home</a>
+            <a id="p5FooterProducts">All Products</a>
+          </div>
+          <div class="footer-col"><h4>Support</h4>
+            <a href="https://wa.me/919027108764" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://www.instagram.com/sufiyann_9027?igsh=MTlmMWo4c3J5cjVkbA==" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">Copyright © 2026 SUFYX-AI. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MODAL
+  ══════════════════════════════════════ -->
+  <div class="overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="modal-x" id="modalClose">✕</button>
+      <div id="modalForm">
+        <div class="modal-eyebrow" id="modalEyebrow">Get in touch</div>
+        <h2 id="modalTitle">Let's talk</h2>
+        <p class="modal-desc" id="modalDesc">Fill in your details and we'll reach out via WhatsApp within 24 hours.</p>
+        <div class="field"><label>Full Name</label><input type="text" id="mName" placeholder="Your name"/></div>
+        <div class="field"><label>Email Address</label><input type="email" id="mEmail" placeholder="your@email.com"/></div>
+        <div class="field"><label>Interested In</label>
+          <select id="mProduct">
+            <option value="">Select a product...</option>
+            <option>Make.com Automation Playbook — ₹299</option>
+            <option>WhatsApp AI Responder — ₹499</option>
+            <option>AI Content Engine — ₹349</option>
+            <option>Lead Capture System — ₹599</option>
+            <option>Zapier Mega Pack — ₹199</option>
+            <option>Instagram Growth Kit — ₹249</option>
+            <option>AI Agent Builder Guide — ₹399</option>
+            <option>Complete AI Business Stack — ₹999</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+        <button class="modal-cta" id="modalSubmit">Send enquiry</button>
+        <p class="modal-note">We reply on WhatsApp within 24 hours. No spam, ever.</p>
+      </div>
+      <div class="success-view" id="modalSuccess">
+        <div class="success-emoji">✅</div>
+        <h3>Enquiry sent!</h3>
+        <p>Thanks! We'll reach out on WhatsApp within 24 hours to help you get started.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       JS — all post-mortem rules applied:
+       · DOMContentLoaded wrapper
+       · addEventListener only, zero onclick
+       · safe on() helper — no null crashes
+       · try-catch on all localStorage
+       · email rendered via JS (no raw HTML)
+  ══════════════════════════════════════ -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* ── helpers ── */
+    function el(id) { return document.getElementById(id); }
+    function on(id, ev, fn) { var e = el(id); if (e) e.addEventListener(ev, fn); }
+
+    /* ── page switching ── */
+    function showPage(n) {
+      [1,2,3,4,5].forEach(function(i){ var p=el('page'+i); if(p) p.classList.toggle('active', i===n); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      el('mobileMenu').classList.remove('open');
+      el('hamburger').classList.remove('open');
+    }
+
+    /* ── hamburger mobile menu ── */
+    on('hamburger', 'click', function () {
+      el('hamburger').classList.toggle('open');
+      el('mobileMenu').classList.toggle('open');
+    });
+    on('mmHome',     'click', function () { showPage(1); });
+    on('mmProducts', 'click', function () { showPage(2); });
+    on('mmBlog',     'click', function () { showPage(4); });
+    on('mmContact',  'click', function () { showPage(1); openModal('contact'); });
+    on('mmCta',      'click', function () { openModal('buy'); });
+
+    /* ── nav links ── */
+    on('navLogo',     'click', function () { showPage(1); });
+    on('navHome',     'click', function () { showPage(1); });
+    on('navProducts', 'click', function () { showPage(2); });
+    on('navFeatures', 'click', function () {
+      showPage(1);
+      setTimeout(function () { var s = el('features'); if (s) s.scrollIntoView({ behavior: 'smooth' }); }, 120);
+    });
+    on('navContact',  'click', function () { openModal('contact'); });
+    on('navLearnMore','click', function () { showPage(2); });
+    on('navCta',      'click', function () { openModal('buy'); });
+
+    /* ── page 1 buttons ── */
+    on('heroShop',      'click', function () { showPage(2); });
+    on('heroLearn',     'click', function () { showPage(2); });
+    on('previewCta',    'click', function () { showPage(2); });
+    on('ctaBandShop',   'click', function () { showPage(2); });
+    on('ctaBandContact','click', function () { openModal('contact'); });
+    on('fp1','click', function(){ showPage(2); });
+    on('fp2','click', function(){ showPage(2); });
+    on('fp3','click', function(){ showPage(2); });
+    on('fp4','click', function(){ showPage(2); });
+    on('fContact','click', function(){ openModal('contact'); });
+    on('fAbout','click',  function(){ openModal('contact'); });
+    on('fBlog','click',   function(){ showPage(4); });
+    on('fAffiliate','click', function(){ openModal('contact'); });
+
+    /* ── page 2 buttons ── */
+    on('p2CtaBack',    'click', function () { showPage(1); });
+    on('p2CtaContact', 'click', function () { openModal('contact'); });
+
+    /* ── product buy buttons — open detail page ── */
+    var products = [
+      { cat:'Playbook', name:'Make.com Automation Playbook', desc:'4 production-ready AI workflows — Instagram Handler, Content Engine, Lead Gen & Cold Outreach. Zero code. Instant results.', price:'₹299', inr:'₹299', strike:'₹599', save:'50%',
+        features:['4 complete workflow blueprints','20+ module configuration reference','AI prompt templates for Claude & ChatGPT','Email sequence Day 0–Day 12','Quick-start launch checklist','30-day WhatsApp support'] },
+      { cat:'Automation', name:'WhatsApp AI Responder', desc:'Apne WhatsApp pe AI laga do — leads ko auto-reply karo, qualify karo aur appointment book karo 24/7 bina kisi ke.', price:'₹499', inr:'₹499', strike:'₹999', save:'50%',
+        features:['AI auto-reply — instant response','Leads automatically qualify ho','Appointment booking built-in','Google Sheets mein data log','30-day WhatsApp support included'] },
+      { cat:'Content AI', name:'AI Content Engine', desc:'Ek ghante mein 30 din ka content banao — Instagram captions, emails, reels scripts. GPT-4 powered templates.', price:'₹349', inr:'₹349', strike:'₹699', save:'50%',
+        features:['100+ ready-to-use templates','Instagram, LinkedIn, Email sab ke liye','Brand voice training included','Hashtag generator tool','Lifetime updates free'] },
+      { cat:'Lead Generation', name:'Lead Capture System', desc:'Sote waqt bhi leads capture ho, qualify ho aur nurture ho. Landing page se WhatsApp follow-up tak poora funnel.', price:'₹599', inr:'₹599', strike:'₹1,199', save:'50%',
+        features:['AI-powered landing page','7-email drip sequence','Lead scoring AI model','Auto WhatsApp follow-up','Analytics dashboard setup'] },
+      { cat:'Automation', name:'Zapier Mega Pack', desc:'50+ ready-made Zapier workflows — import karo aur seedha chala do. E-commerce, agency, freelancer sab ke liye.', price:'₹199', inr:'₹199', strike:'₹399', save:'50%',
+        features:['50+ import-ready workflows','CRM + email + sheets connect','Har workflow ka video guide','Slack + email notifications','Monthly naye workflows add'] },
+      { cat:'Content AI', name:'Instagram Growth Kit', desc:'AI captions, hashtag strategy, story templates aur auto-DM bot — sab ek jagah. Reels se real followers tak.', price:'₹249', inr:'₹249', strike:'₹499', save:'50%',
+        features:['30 din ke captions AI se','200+ story templates','Auto-DM bot setup guide','Hashtag research tool','Reel script templates'] },
+      { cat:'Guide', name:'Complete AI Agent Builder Guide', desc:'ChatGPT + Claude se apna khud ka AI agent banao. 6 chapters, 15+ working code snippets, real proof ke saath. Bilkul beginner-friendly.', price:'₹399', inr:'₹399', strike:'₹799', save:'50%',
+        features:['GPT-4o Function Calling Agent — full tested code','Claude Tool Use Agent + reasoning trace visible','Memory System — short-term aur long-term','Multi-Agent Orchestrator pattern — real code','Free deploy — Replit, Railway, Make.com webhook','100% Beginner friendly — copy-paste ready'] },
+      { cat:'Bundle', name:'Complete AI Business Stack', desc:'Saare 7 products ek saath — automation, content, leads, agent guide aur playbook. White-label rights bhi included.', price:'₹999', inr:'₹999', strike:'₹2,499', save:'60%',
+        features:['Saare 7 products included','White-label rights — resell kar sakte ho','Priority WhatsApp support (48h)','Onboarding call included','Quarterly updates for 1 year'] }
+    ];
+
+    document.querySelectorAll('.prod-buy').forEach(function (btn, i) {
+      btn.addEventListener('click', function () { openDetailPage(i); });
+    });
+
+    // "View full details" on playbook card → page 5
+    document.querySelectorAll('.playbook-detail-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { showPage(5); });
+    });
+    // "View details" on agent guide card → open modal
+    document.querySelectorAll('.agent-detail-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { openModal('buy'); });
+    });
+
+    function openDetailPage(idx) {
+      var p = products[idx] || products[0];
+      el('detailCat').textContent   = p.cat;
+      el('detailName').textContent  = p.name;
+      el('detailDesc').textContent  = p.desc;
+      el('detailPrice').textContent = p.price;
+      el('detailBuyBtn').textContent = 'Buy now — ' + p.price;
+      el('rpPrice').textContent     = p.inr;
+      document.querySelector('.rp-strike').textContent = p.strike;
+      document.querySelector('.rp-save').textContent   = 'Save ' + p.save;
+      var featEl = el('detailFeatures');
+      featEl.innerHTML = p.features.map(function(f){ return '<li>' + f + '</li>'; }).join('');
+      // store current product for Razorpay
+      el('rzpPayBtn').setAttribute('data-name', p.name);
+      el('rzpPayBtn').setAttribute('data-price', p.price);
+      showPage(3);
+    }
+
+    on('detailBackBtn', 'click', function () { showPage(2); });
+    on('detailBuyBtn',  'click', function () { initRazorpay(); });
+
+    /* ── Razorpay integration ── */
+    on('rzpPayBtn', 'click', function () { initRazorpay(); });
+
+    function initRazorpay() {
+      var btn = el('rzpPayBtn');
+      var name = btn.getAttribute('data-name') || 'SUFYX-AI Product';
+      var priceText = btn.getAttribute('data-price') || '₹299';
+      var inrAmount = parseInt(priceText.replace(/[₹,]/g,'')) || 299;
+      var amountPaise = inrAmount * 100;
+
+      // ─────────────────────────────────────────
+      // 🔑 RAZORPAY SETUP (Step 2):
+      // 1. razorpay.com pe free account banao
+      // 2. Settings → API Keys → Generate Test Key
+      // 3. Neeche 'rzp_test_XXXX' ki jagah apni key daalo
+      // 4. Live ke liye: rzp_live_XXXX use karo
+      // ─────────────────────────────────────────
+      var RZP_KEY = 'rzp_test_REPLACE_YOUR_KEY_HERE';
+
+      if (typeof Razorpay === 'undefined' || RZP_KEY.includes('REPLACE')) {
+        // Fallback → WhatsApp se manually collect karo
+        var msg = encodeURIComponent(
+          'Hi Sufiyan! 🙏\n\nMujhe yeh product lena hai:\n' +
+          '📦 Product: ' + name + '\n' +
+          '💰 Price: ' + priceText + '\n\n' +
+          'Payment details bhejo please!'
+        );
+        window.open('https://wa.me/919027108764?text=' + msg, '_blank');
+        return;
+      }
+
+      btn.classList.add('loading');
+      btn.textContent = 'Opening payment...';
+
+      var options = {
+        key: RZP_KEY,
+        amount: amountPaise,
+        currency: 'INR',
+        name: 'SUFYX-AI',
+        description: name,
+        image: '',
+        prefill: { name: '', email: '', contact: '' },
+        theme: { color: '#1D1D1F' },
+        handler: function (response) {
+          btn.classList.remove('loading');
+          btn.innerHTML = '<span>✅</span> Payment successful!';
+          // Save order locally
+          try {
+            var orders = JSON.parse(localStorage.getItem('sufyx_orders') || '[]');
+            orders.push({ product: name, price: priceText, paymentId: response.razorpay_payment_id, ts: new Date().toISOString() });
+            localStorage.setItem('sufyx_orders', JSON.stringify(orders));
+          } catch(e) {}
+          // Redirect to WhatsApp for delivery
+          setTimeout(function () {
+            var deliveryMsg = encodeURIComponent('Payment successful! ID: ' + response.razorpay_payment_id + '. Please deliver: ' + name);
+            window.open('https://wa.me/919027108764?text=' + deliveryMsg, '_blank');
+          }, 1000);
+        },
+        modal: {
+          ondismiss: function () {
+            btn.classList.remove('loading');
+            btn.innerHTML = '<span>🔒</span> Pay securely with Razorpay';
+          }
+        }
+      };
+
+      try {
+        var rzp = new Razorpay(options);
+        rzp.open();
+      } catch(e) {
+        btn.classList.remove('loading');
+        btn.innerHTML = '<span>🔒</span> Pay securely with Razorpay';
+        // Fallback to WhatsApp
+        var m = encodeURIComponent('Hi! I want to buy: ' + name + ' (' + priceText + '). Please send me the payment link.');
+        window.open('https://wa.me/919027108764?text=' + m, '_blank');
+      }
+    }
+
+    /* ── category filter (page 2) ── */
+    document.querySelectorAll('.cat-pill').forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        document.querySelectorAll('.cat-pill').forEach(function (p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+        var cat = pill.getAttribute('data-cat');
+        document.querySelectorAll('.prod-card').forEach(function (card) {
+          card.style.display = (cat === 'all' || card.getAttribute('data-cat') === cat) ? 'flex' : 'none';
+        });
+      });
+    });
+
+    /* ── FAQ accordion ── */
+    document.querySelectorAll('.faq-q').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.faq-item');
+        var wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    /* ── blog nav ── */
+    on('navBlog', 'click', function () { showPage(4); });
+    document.querySelectorAll('.blog-card').forEach(function (card) {
+      card.addEventListener('click', function () { openModal('contact'); }); // placeholder for full post
+    });
+    on('blogFooterHome',     'click', function () { showPage(1); });
+    on('blogFooterProducts', 'click', function () { showPage(2); });
+    on('p5FooterHome',       'click', function () { showPage(1); });
+    on('p5FooterProducts',   'click', function () { showPage(2); });
+    on('playbackBackBtn',    'click', function () { showPage(2); });
+    document.querySelectorAll('.playbook-buy-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){ openModal('buy'); });
+    });
+
+    /* ── modal ── */
+    function openModal(type) {
+      if (type === 'buy') {
+        el('modalEyebrow').textContent = 'Purchase enquiry';
+        el('modalTitle').textContent   = 'Get this product';
+        el('modalDesc').textContent    = "Tell us which product you want and we'll send you the secure payment link via WhatsApp.";
+      } else {
+        el('modalEyebrow').textContent = 'Contact us';
+        el('modalTitle').textContent   = "Let's talk";
+        el('modalDesc').textContent    = "Fill in your details and we'll reach out via WhatsApp within 24 hours.";
+      }
+      el('modalForm').style.display = 'block';
+      el('modalSuccess').classList.remove('show');
+      el('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      el('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    on('modalClose', 'click', closeModal);
+    el('modalOverlay').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+
+    on('modalSubmit', 'click', async function () {
+      var name    = el('mName').value.trim();
+      var email   = el('mEmail').value.trim();
+      var product = el('mProduct').value;
+      if (!name)               { el('mName').style.borderColor  = '#FF3B30'; el('mName').focus();  return; }
+      if (!email.includes('@')){ el('mEmail').style.borderColor = '#FF3B30'; el('mEmail').focus(); return; }
+
+      el('modalSubmit').disabled = true;
+      el('modalSubmit').textContent = 'Sending...';
+
+      // ─────────────────────────────────────────────
+      // 📧 FIX #4 — FORMSPREE EMAIL SETUP:
+      // 1. formspree.io pe free account banao
+      // 2. New form banao → apna endpoint copy karo
+      // 3. 'YOUR_FORMSPREE_ID' ki jagah daalo (e.g. 'xpwzgkjb')
+      // ─────────────────────────────────────────────
+      var FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+
+      // Save to localStorage
+      try {
+        var leads = JSON.parse(localStorage.getItem('sufyx_leads') || '[]');
+        leads.push({ name: name, email: email, product: product, ts: new Date().toISOString() });
+        localStorage.setItem('sufyx_leads', JSON.stringify(leads));
+      } catch (e) {}
+
+      // Send to Formspree (if configured)
+      if (!FORMSPREE_ID.includes('YOUR')) {
+        try {
+          await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              name: name, email: email,
+              product: product || 'Not specified',
+              source: 'SUFYX-AI Purchase Enquiry',
+              _subject: '🛒 New Purchase Enquiry — ' + (product || 'SUFYX-AI')
+            })
+          });
+        } catch(e) {}
+      }
+
+      // Always open WhatsApp with prefilled message
+      var waMsg = encodeURIComponent(
+        'Hi! 👋\n\nNaaya order hai:\n' +
+        '👤 Name: ' + name + '\n' +
+        '📧 Email: ' + email + '\n' +
+        '📦 Product: ' + (product || 'Not selected') + '\n\n' +
+        'Payment link bhejo please!'
+      );
+      window.open('https://wa.me/919027108764?text=' + waMsg, '_blank');
+
+      el('modalSubmit').disabled = false;
+      el('modalSubmit').textContent = 'Send enquiry';
+      el('modalForm').style.display = 'none';
+      el('modalSuccess').classList.add('show');
+    });
+
+    /* ── ESC to close ── */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+  });
+  </script>
+
+  <!-- Razorpay SDK — loaded async, graceful fallback if offline -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
+
+  <!-- ══════════════════════════════════════
+       AI CHATBOT — SUFYX-AI Support
+  ══════════════════════════════════════ -->
+  <style>
+    /* CHAT BUBBLE */
+    .chat-bubble {
+      position: fixed; bottom: 24px; left: 24px; z-index: 800;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #2563EB);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,113,227,0.45);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .chat-bubble:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(0,113,227,0.55); }
+    .chat-bubble svg { width: 24px; height: 24px; fill: #fff; }
+    .chat-notif {
+      position: absolute; top: -3px; right: -3px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #FF375F; border: 2px solid var(--bg);
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot { 0%,100%{transform:scale(1);}50%{transform:scale(1.2);} }
+
+    /* CHAT WINDOW */
+    .chat-window {
+      position: fixed;
+      bottom: 90px;
+      left: 24px;
+      z-index: 800;
+      width: 340px;
+      height: 500px;
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.85) translateY(20px);
+      transform-origin: bottom left;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .chat-window.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* CHAT HEADER — fixed height */
+    .chat-header {
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--dark), #1a1a2e);
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .chat-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #2563EB);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; flex-shrink: 0;
+    }
+    .chat-header-info { flex: 1; }
+    .chat-header-name { font-size: 0.85rem; font-weight: 700; color: #fff; }
+    .chat-header-status {
+      font-size: 0.65rem; color: var(--green);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .chat-header-status::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); animation: pulse-dot 2s infinite;
+    }
+    .chat-close {
+      background: rgba(255,255,255,0.08); border: none; border-radius: 8px;
+      color: rgba(255,255,255,0.5); width: 28px; height: 28px;
+      cursor: pointer; font-size: 0.8rem; display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.15s, color 0.15s; flex-shrink: 0;
+    }
+    .chat-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+    /* MESSAGES AREA — scrollable, takes remaining space */
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: var(--bg);
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+    .chat-messages::-webkit-scrollbar { width: 3px; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+    /* MESSAGE BUBBLES */
+    .msg { display: flex; gap: 8px; animation: msgIn 0.2s ease; }
+    @keyframes msgIn { from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);} }
+    .msg.user { flex-direction: row-reverse; }
+    .msg-avatar {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; align-self: flex-end;
+    }
+    .msg-avatar.bot { background: linear-gradient(135deg, var(--accent), #2563EB); color: #fff; }
+    .msg-avatar.user { background: linear-gradient(135deg, var(--accent2), #7c3aed); color: #fff; }
+    .msg-bubble {
+      max-width: 78%; padding: 9px 12px; border-radius: 14px;
+      font-size: 0.82rem; line-height: 1.55; word-break: break-word;
+    }
+    .msg.bot .msg-bubble {
+      background: var(--card); color: var(--dark); border: 1px solid var(--rule);
+      border-bottom-left-radius: 4px;
+    }
+    .msg.user .msg-bubble {
+      background: linear-gradient(135deg, var(--accent), #2563EB);
+      color: #fff; border-bottom-right-radius: 4px;
+    }
+    .msg-time { font-size: 0.58rem; color: var(--muted); margin-top: 3px; text-align: right; }
+
+    /* TYPING INDICATOR */
+    .typing-indicator { display: none; flex-shrink: 0; }
+    .typing-indicator.show { display: flex; }
+    .typing-dots { display: flex; gap: 4px; align-items: center; padding: 9px 12px; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; border-bottom-left-radius: 4px; }
+    .typing-dots span { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); animation: typing 1.2s infinite; }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing { 0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-4px);opacity:1;} }
+
+    /* QUICK REPLIES — fixed, no scroll */
+    .quick-replies {
+      flex-shrink: 0;
+      padding: 7px 12px;
+      display: flex; gap: 6px; flex-wrap: wrap;
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+    }
+    .qr-btn {
+      background: var(--card); border: 1px solid var(--rule);
+      border-radius: 980px; padding: 5px 11px;
+      font-size: 0.7rem; color: var(--accent); cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
+      transition: all 0.15s; white-space: nowrap;
+    }
+    .qr-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* INPUT AREA — fixed at bottom */
+    .chat-input-wrap {
+      flex-shrink: 0;
+      padding: 10px 12px;
+      border-top: 1px solid var(--rule);
+      display: flex; gap: 8px; align-items: center;
+      background: var(--bg2);
+    }
+    .chat-input {
+      flex: 1; background: var(--bg); border: 1.5px solid var(--rule);
+      border-radius: 10px; padding: 8px 12px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.83rem;
+      color: var(--dark); outline: none; resize: none;
+      max-height: 70px; line-height: 1.4;
+      transition: border-color 0.15s;
+    }
+    .chat-input:focus { border-color: var(--accent); }
+    .chat-input::placeholder { color: var(--muted); }
+    .chat-send {
+      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), #2563EB);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .chat-send:hover { opacity: 0.88; transform: scale(1.05); }
+    .chat-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .chat-send svg { width: 15px; height: 15px; fill: #fff; }
+
+    /* MOBILE — full screen chat */
+    @media(max-width: 480px) {
+      .chat-window {
+        width: calc(100vw - 20px);
+        left: 10px;
+        right: 10px;
+        bottom: 90px;
+        height: 65vh;
+        max-height: 520px;
+      }
+      .chat-bubble {
+        bottom: 24px;
+        left: 16px;
+      }
+    }
+  </style>
+
+  <!-- CHAT BUBBLE BUTTON -->
+  <button class="chat-bubble" id="chatBubble" aria-label="Open Support Chat">
+    <div class="chat-notif"></div>
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+  </button>
+
+  <!-- CHAT WINDOW -->
+  <div class="chat-window" id="chatWindow">
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="chat-avatar">🤖</div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">SUFYX-AI Assistant</div>
+        <div class="chat-header-status">Online — AI Powered</div>
+      </div>
+      <button class="chat-close" id="chatClose">✕</button>
+    </div>
+
+    <!-- Messages -->
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg bot">
+        <div class="msg-avatar bot">🤖</div>
+        <div>
+          <div class="msg-bubble">Namaste! 👋 Main SUFYX-AI ka support assistant hoon.<br><br>Mujhse poochho — products, pricing, payment, ya kuch bhi!</div>
+          <div class="msg-time">Just now</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typing indicator -->
+    <div class="msg bot typing-indicator" id="typingIndicator" style="padding:0 16px 8px;">
+      <div class="msg-avatar bot">🤖</div>
+      <div class="typing-dots"><span></span><span></span><span></span></div>
+    </div>
+
+    <!-- Quick replies -->
+    <div class="quick-replies" id="quickReplies">
+      <button class="qr-btn">📦 Products dekhna hai</button>
+      <button class="qr-btn">💳 Payment kaise karein?</button>
+      <button class="qr-btn">🤖 AI Agent Guide kya hai?</button>
+      <button class="qr-btn">📄 Make.com Playbook?</button>
+      <button class="qr-btn">🔄 Refund policy?</button>
+    </div>
+
+    <!-- Input -->
+    <div class="chat-input-wrap">
+      <textarea class="chat-input" id="chatInput" placeholder="Apna sawal yahan likhein..." rows="1"></textarea>
+      <button class="chat-send" id="chatSend">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    var chatBubble  = document.getElementById('chatBubble');
+    var chatWindow  = document.getElementById('chatWindow');
+    var chatClose   = document.getElementById('chatClose');
+    var chatMessages= document.getElementById('chatMessages');
+    var chatInput   = document.getElementById('chatInput');
+    var chatSend    = document.getElementById('chatSend');
+    var typingEl    = document.getElementById('typingIndicator');
+    var quickEl     = document.getElementById('quickReplies');
+    var isOpen      = false;
+    var isLoading   = false;
+
+    // Chat history for context
+    var chatHistory = [];
+
+    // SUFYX-AI product knowledge base (system prompt)
+    var systemPrompt = `You are a friendly and helpful customer support assistant for SUFYX-AI — an Indian digital products company that sells AI automation tools and guides.
+
+PRODUCTS & PRICING (all prices in INR, one-time payment):
+1. Make.com Automation Playbook — ₹299 (was ₹599) — 4 AI workflows, 20+ modules, no-code
+2. WhatsApp AI Responder — ₹499 (was ₹999) — auto-reply bot, lead qualification, appointment booking
+3. AI Content Engine — ₹349 (was ₹699) — 100+ templates, Instagram/LinkedIn/Email content
+4. Lead Capture System — ₹599 (was ₹1,199) — AI funnel, email drip, lead scoring
+5. Zapier Mega Pack — ₹199 (was ₹399) — 50+ ready workflows
+6. Instagram Growth Kit — ₹249 (was ₹499) — captions, stories, auto-DM
+7. AI Agent Builder Guide — ₹399 (was ₹799) — ChatGPT + Claude agents, 6 chapters, 15+ code snippets
+8. Complete AI Business Stack Bundle — ₹999 (was ₹2,499) — all 7 products + white-label rights
+
+POLICIES:
+- All products: one-time payment, lifetime access, all future updates free
+- 7-day money-back guarantee on all products
+- Payment via UPI, Visa, Mastercard, RuPay, Net Banking (Razorpay)
+- WhatsApp support: +91 90271 08764
+- Instagram: @sufiyann_9027
+- Email: zyntaskai@gmail.com
+- Response time: within 24 hours on WhatsApp
+
+ABOUT:
+- Founder: Sufiyan — self-taught AI automation builder from a village in India
+- Built with EDITH (Claude AI)
+
+TONE: Be friendly, helpful, and use a mix of Hindi and English (Hinglish) naturally. Keep responses concise and helpful. If someone wants to buy, guide them to click "Buy now" or contact on WhatsApp. Always end with offering more help.`;
+
+    // Toggle chat
+    chatBubble.addEventListener('click', function () {
+      isOpen = !isOpen;
+      chatWindow.classList.toggle('open', isOpen);
+      if (isOpen) {
+        chatBubble.querySelector('.chat-notif').style.display = 'none';
+        chatInput.focus();
+      }
+    });
+
+    chatClose.addEventListener('click', function () {
+      isOpen = false;
+      chatWindow.classList.remove('open');
+    });
+
+    // Quick replies
+    quickEl.querySelectorAll('.qr-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        sendMessage(btn.textContent.trim());
+        quickEl.style.display = 'none';
+      });
+    });
+
+    // Send on Enter (Shift+Enter for new line)
+    chatInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage(chatInput.value.trim());
+      }
+    });
+    chatSend.addEventListener('click', function () {
+      sendMessage(chatInput.value.trim());
+    });
+
+    // Auto-resize textarea
+    chatInput.addEventListener('input', function () {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+    });
+
+    function getTime() {
+      var d = new Date();
+      return d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+    }
+
+    function addMessage(text, role) {
+      var isUser = role === 'user';
+      var div = document.createElement('div');
+      div.className = 'msg ' + role;
+      div.innerHTML =
+        '<div class="msg-avatar ' + role + '">' + (isUser ? 'U' : '🤖') + '</div>' +
+        '<div>' +
+          '<div class="msg-bubble">' + text.replace(/\n/g, '<br>') + '</div>' +
+          '<div class="msg-time">' + getTime() + '</div>' +
+        '</div>';
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTyping(show) {
+      typingEl.classList.toggle('show', show);
+      if (show) chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    async function sendMessage(text) {
+      if (!text || isLoading) return;
+      chatInput.value = '';
+      chatInput.style.height = 'auto';
+      isLoading = true;
+      chatSend.disabled = true;
+
+      // Add user message
+      addMessage(text, 'user');
+      chatHistory.push({ role: 'user', content: text });
+
+      // Show typing
+      showTyping(true);
+
+      try {
+        var response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 400,
+            system: systemPrompt,
+            messages: chatHistory
+          })
+        });
+
+        var data = await response.json();
+        var reply = (data.content && data.content[0] && data.content[0].text)
+          ? data.content[0].text
+          : 'Maafi chahta hoon, abhi thodi dikkat aa rahi hai. Please WhatsApp karein: +91 90271 08764 🙏';
+
+        // Add to history
+        chatHistory.push({ role: 'assistant', content: reply });
+
+        // Keep history to last 10 messages (5 exchanges)
+        if (chatHistory.length > 10) chatHistory = chatHistory.slice(-10);
+
+        showTyping(false);
+        addMessage(reply, 'bot');
+
+      } catch (err) {
+        showTyping(false);
+        addMessage('Oops! Network issue lag raha hai. Please WhatsApp pe message karein: +91 90271 08764 💬', 'bot');
+      }
+
+      isLoading = false;
+      chatSend.disabled = false;
+      chatInput.focus();
+    }
+
+  });
+  </script>
+</body>
+</html>
