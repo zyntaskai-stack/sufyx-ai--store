@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SUFYX-AI Agent Dashboard</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── LOGIN SCREEN ── */
+    .login-screen {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #07080F;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Outfit', sans-serif;
+    }
+    .login-screen::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99,102,241,0.12), transparent);
+      pointer-events: none;
+    }
+    .login-box {
+      background: #0D0F1A; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px; padding: 48px 40px;
+      width: 100%; max-width: 400px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    }
+    .login-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #6366F1, #8B5CF6, #EC4899);
+    }
+    .login-logo {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 32px; justify-content: center;
+    }
+    .login-logo-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, #6366F1, #8B5CF6);
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+    }
+    .login-logo-text { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: #F1F5F9; }
+    .login-logo-sub  { font-size: 0.6rem; color: #475569; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+    .login-title { font-size: 1.4rem; font-weight: 700; color: #F1F5F9; text-align: center; margin-bottom: 6px; }
+    .login-sub   { font-size: 0.82rem; color: #475569; text-align: center; margin-bottom: 28px; font-family: 'JetBrains Mono', monospace; }
+    .login-field { margin-bottom: 14px; }
+    .login-field label {
+      display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+      color: #475569; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .login-field input {
+      width: 100%; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 11px; color: #F1F5F9; font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem; padding: 13px 16px; outline: none;
+      transition: border-color 0.15s; letter-spacing: 2px;
+    }
+    .login-field input:focus { border-color: #6366F1; }
+    .login-field input.error { border-color: #EF4444; animation: shake 0.3s ease; }
+    @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
+    .login-btn {
+      width: 100%; padding: 14px; margin-top: 6px;
+      background: linear-gradient(135deg, #6366F1, #8B5CF6);
+      border: none; border-radius: 11px; color: #fff;
+      font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.95rem;
+      cursor: pointer; transition: opacity 0.15s, transform 0.1s;
+      box-shadow: 0 4px 20px rgba(99,102,241,0.35);
+    }
+    .login-btn:hover { opacity: 0.88; transform: scale(1.01); }
+    .login-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .login-error {
+      display: none; margin-top: 14px; padding: 10px 14px;
+      background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 9px; font-size: 0.8rem; color: #EF4444; text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .login-error.show { display: block; }
+    .login-attempts {
+      margin-top: 12px; text-align: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #334155;
+    }
+    .login-locked {
+      display: none; text-align: center; padding: 12px 0;
+    }
+    .login-locked.show { display: block; }
+    .lock-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .lock-msg { font-size: 0.85rem; color: #EF4444; margin-bottom: 6px; font-weight: 600; }
+    .lock-sub  { font-size: 0.72rem; color: #475569; font-family: 'JetBrains Mono', monospace; }
+    .countdown { color: #F59E0B; font-weight: 700; }
+  </style>
+    :root {
+      --bg:      #07080F;
+      --surface: #0D0F1A;
+      --card:    #111320;
+      --card2:   #161829;
+      --border:  rgba(255,255,255,0.07);
+      --accent:  #6366F1;
+      --accent2: #8B5CF6;
+      --green:   #10B981;
+      --orange:  #F59E0B;
+      --red:     #EF4444;
+      --blue:    #3B82F6;
+      --pink:    #EC4899;
+      --cyan:    #06B6D4;
+      --text:    #F1F5F9;
+      --text2:   #94A3B8;
+      --muted:   #475569;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{-webkit-font-smoothing:antialiased;}
+    body{
+      background:var(--bg);color:var(--text);
+      font-family:'Outfit',sans-serif;
+      min-height:100vh;overflow-x:hidden;
+    }
+    body::before{
+      content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+      background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(99,102,241,0.08),transparent);
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar{
+      position:fixed;top:0;left:0;bottom:0;width:240px;
+      background:var(--surface);border-right:1px solid var(--border);
+      z-index:100;display:flex;flex-direction:column;
+      padding:20px 0;
+    }
+    .sidebar-logo{
+      padding:0 20px 20px;border-bottom:1px solid var(--border);
+      display:flex;align-items:center;gap:10px;
+    }
+    .logo-icon{
+      width:34px;height:34px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:flex;align-items:center;justify-content:center;font-size:1rem;
+    }
+    .logo-text{font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:700;color:var(--text);}
+    .logo-sub{font-size:0.6rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:1px;}
+
+    .nav-section{padding:16px 12px 8px;font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:3px;text-transform:uppercase;}
+    .nav-item{
+      display:flex;align-items:center;gap:10px;
+      padding:9px 20px;cursor:pointer;border-radius:0;
+      font-size:0.85rem;color:var(--text2);
+      transition:all 0.15s;border-left:2px solid transparent;
+      position:relative;
+    }
+    .nav-item:hover{background:rgba(255,255,255,0.04);color:var(--text);}
+    .nav-item.active{background:rgba(99,102,241,0.1);color:var(--accent);border-left-color:var(--accent);}
+    .nav-item .nav-icon{font-size:1rem;width:20px;text-align:center;}
+    .nav-badge{
+      margin-left:auto;background:var(--accent);color:#fff;
+      font-size:0.58rem;font-weight:700;padding:2px 7px;
+      border-radius:980px;font-family:'JetBrains Mono',monospace;
+    }
+
+    .sidebar-footer{
+      margin-top:auto;padding:16px 20px;border-top:1px solid var(--border);
+    }
+    .agent-status{
+      display:flex;align-items:center;gap:8px;
+      background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);
+      border-radius:10px;padding:10px 12px;
+    }
+    .status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.3);}}
+    .status-text{font-size:0.72rem;color:var(--green);font-family:'JetBrains Mono',monospace;letter-spacing:0.5px;}
+
+    /* ── MAIN ── */
+    .main{margin-left:240px;min-height:100vh;padding:28px;position:relative;z-index:1;}
+
+    /* ── TOPBAR ── */
+    .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+    .topbar-title{font-size:1.3rem;font-weight:700;color:var(--text);}
+    .topbar-title span{color:var(--accent);}
+    .topbar-right{display:flex;align-items:center;gap:10px;}
+    .task-counter{
+      background:var(--card);border:1px solid var(--border);border-radius:10px;
+      padding:7px 14px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+      color:var(--text2);display:flex;align-items:center;gap:6px;
+    }
+    .task-counter strong{color:var(--accent);}
+
+    /* ── SECTION VIEWS ── */
+    .view{display:none;}
+    .view.active{display:block;}
+
+    /* ── STAT CARDS ── */
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+    .stat-card{
+      background:var(--card);border:1px solid var(--border);border-radius:14px;
+      padding:18px 20px;position:relative;overflow:hidden;
+      transition:border-color 0.15s;
+    }
+    .stat-card:hover{border-color:rgba(99,102,241,0.3);}
+    .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+    .stat-card:nth-child(1)::before{background:var(--accent);}
+    .stat-card:nth-child(2)::before{background:var(--green);}
+    .stat-card:nth-child(3)::before{background:var(--orange);}
+    .stat-card:nth-child(4)::before{background:var(--pink);}
+    .stat-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+    .stat-value{font-size:1.8rem;font-weight:700;color:var(--text);letter-spacing:-1px;line-height:1;}
+    .stat-sub{font-size:0.72rem;color:var(--text2);margin-top:4px;}
+
+    /* ── QUICK ACTIONS ── */
+    .section-title{font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+    .quick-card{
+      background:var(--card);border:1px solid var(--border);border-radius:14px;
+      padding:18px;cursor:pointer;transition:all 0.15s;
+      display:flex;align-items:center;gap:14px;
+    }
+    .quick-card:hover{border-color:rgba(99,102,241,0.4);background:var(--card2);transform:translateY(-1px);}
+    .quick-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+    .quick-name{font-size:0.88rem;font-weight:600;color:var(--text);margin-bottom:2px;}
+    .quick-desc{font-size:0.72rem;color:var(--muted);}
+
+    /* ── TASK QUEUE ── */
+    .task-queue{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+    .queue-header{
+      padding:16px 20px;border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .queue-title{font-size:0.88rem;font-weight:600;}
+    .clear-btn{
+      background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);
+      border-radius:7px;color:var(--red);font-size:0.72rem;padding:5px 12px;
+      cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.15s;
+    }
+    .clear-btn:hover{background:rgba(239,68,68,0.2);}
+    .task-list{max-height:320px;overflow-y:auto;}
+    .task-list::-webkit-scrollbar{width:3px;}
+    .task-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+    .task-item{
+      padding:14px 20px;border-bottom:1px solid var(--border);
+      display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;align-items:center;
+    }
+    .task-item:last-child{border-bottom:none;}
+    .task-status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+    .task-status-dot.running{background:var(--accent);animation:pulse 1s infinite;}
+    .task-status-dot.done{background:var(--green);}
+    .task-status-dot.error{background:var(--red);}
+    .task-status-dot.pending{background:var(--orange);}
+    .task-name{font-size:0.85rem;color:var(--text);font-weight:500;}
+    .task-meta{font-size:0.68rem;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+    .task-time{font-size:0.65rem;color:var(--muted);font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+    .task-badge{
+      font-size:0.6rem;font-family:'JetBrains Mono',monospace;font-weight:700;
+      padding:3px 8px;border-radius:980px;white-space:nowrap;
+    }
+    .task-badge.running{background:rgba(99,102,241,0.15);color:var(--accent);}
+    .task-badge.done{background:rgba(16,185,129,0.12);color:var(--green);}
+    .task-badge.error{background:rgba(239,68,68,0.12);color:var(--red);}
+    .task-badge.pending{background:rgba(245,158,11,0.12);color:var(--orange);}
+    .empty-queue{padding:40px 20px;text-align:center;color:var(--muted);font-size:0.85rem;}
+
+    /* ── TOOL WORKSPACE ── */
+    .workspace{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .tool-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+    .tool-header{
+      padding:14px 18px;border-bottom:1px solid var(--border);
+      display:flex;align-items:center;gap:10px;
+    }
+    .tool-header-icon{font-size:1.1rem;}
+    .tool-header-name{font-size:0.88rem;font-weight:600;color:var(--text);}
+    .tool-header-badge{
+      margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+      padding:3px 8px;border-radius:980px;
+    }
+    .tool-body{padding:16px;}
+    .tool-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;}
+    .tool-input{
+      width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);
+      border-radius:10px;color:var(--text);font-family:'Outfit',sans-serif;
+      font-size:0.85rem;padding:10px 13px;outline:none;resize:none;
+      transition:border-color 0.15s;margin-bottom:10px;
+    }
+    .tool-input:focus{border-color:var(--accent);}
+    .tool-input::placeholder{color:var(--muted);}
+    .tool-select{
+      width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);
+      border-radius:10px;color:var(--text);font-family:'Outfit',sans-serif;
+      font-size:0.85rem;padding:10px 13px;outline:none;
+      transition:border-color 0.15s;margin-bottom:10px;cursor:pointer;
+    }
+    .tool-select:focus{border-color:var(--accent);}
+    .tool-select option{background:#111320;}
+    .run-btn{
+      width:100%;padding:11px;border:none;border-radius:10px;
+      font-family:'Outfit',sans-serif;font-weight:600;font-size:0.85rem;
+      cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:7px;
+    }
+    .run-btn:disabled{opacity:0.5;cursor:not-allowed;}
+    .tool-output{
+      margin-top:10px;background:rgba(0,0,0,0.3);border:1px solid var(--border);
+      border-radius:10px;padding:12px;min-height:80px;
+      font-size:0.82rem;color:var(--text2);line-height:1.7;
+      font-family:'Outfit',sans-serif;display:none;position:relative;
+    }
+    .tool-output.show{display:block;}
+    .copy-out-btn{
+      position:absolute;top:8px;right:8px;
+      background:rgba(255,255,255,0.07);border:1px solid var(--border);
+      border-radius:6px;color:var(--muted);font-size:0.65rem;
+      padding:4px 10px;cursor:pointer;font-family:'JetBrains Mono',monospace;
+      transition:all 0.15s;
+    }
+    .copy-out-btn:hover{color:var(--accent);border-color:var(--accent);}
+    .output-typing{
+      display:inline-block;width:8px;height:15px;
+      background:var(--accent);animation:blink-cursor 0.8s infinite;
+      vertical-align:middle;border-radius:1px;margin-left:2px;
+    }
+    @keyframes blink-cursor{0%,100%{opacity:1;}50%{opacity:0;}}
+
+    /* ── AGENT RUNNER VIEW ── */
+    .agent-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:16px;}
+    .agent-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .agent-title{font-size:0.95rem;font-weight:700;}
+    .agent-body{padding:20px;}
+    .agent-input-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:14px;align-items:end;}
+    .agent-run-btn{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      border:none;border-radius:10px;color:#fff;
+      font-family:'Outfit',sans-serif;font-weight:700;font-size:0.85rem;
+      padding:10px 20px;cursor:pointer;white-space:nowrap;
+      transition:opacity 0.15s,transform 0.1s;
+    }
+    .agent-run-btn:hover{opacity:0.88;transform:scale(1.02);}
+    .agent-run-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+    .agent-log{
+      background:rgba(0,0,0,0.4);border:1px solid var(--border);
+      border-radius:12px;padding:16px;min-height:200px;max-height:400px;
+      overflow-y:auto;font-family:'JetBrains Mono',monospace;font-size:0.75rem;
+      line-height:1.8;
+    }
+    .agent-log::-webkit-scrollbar{width:3px;}
+    .agent-log::-webkit-scrollbar-thumb{background:var(--border);}
+    .log-line{display:flex;gap:10px;margin-bottom:4px;}
+    .log-time{color:var(--muted);flex-shrink:0;}
+    .log-type{flex-shrink:0;font-weight:700;}
+    .log-type.info{color:var(--blue);}
+    .log-type.success{color:var(--green);}
+    .log-type.error{color:var(--red);}
+    .log-type.think{color:var(--accent);}
+    .log-type.action{color:var(--orange);}
+    .log-msg{color:var(--text2);}
+    .log-empty{color:var(--muted);font-size:0.72rem;padding:20px;text-align:center;}
+
+    /* ── HISTORY VIEW ── */
+    .history-table{width:100%;border-collapse:collapse;}
+    .history-table th{
+      padding:10px 16px;text-align:left;
+      font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+      color:var(--muted);letter-spacing:2px;text-transform:uppercase;
+      border-bottom:1px solid var(--border);background:var(--card);
+    }
+    .history-table td{
+      padding:12px 16px;font-size:0.83rem;color:var(--text2);
+      border-bottom:1px solid var(--border);
+    }
+    .history-table tr:hover td{background:rgba(255,255,255,0.02);}
+    .history-table tr:last-child td{border-bottom:none;}
+
+    /* ── SETTINGS VIEW ── */
+    .settings-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:16px;}
+    .settings-title{font-size:0.95rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+    .setting-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+    .setting-field label{display:block;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;}
+    .setting-field input,.setting-field select{
+      width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);
+      border-radius:10px;color:var(--text);font-family:'Outfit',sans-serif;
+      font-size:0.85rem;padding:10px 13px;outline:none;transition:border-color 0.15s;
+    }
+    .setting-field input:focus,.setting-field select:focus{border-color:var(--accent);}
+    .setting-field input::placeholder{color:var(--muted);}
+    .setting-field select option{background:#111320;}
+    .save-btn{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      border:none;border-radius:10px;color:#fff;font-family:'Outfit',sans-serif;
+      font-weight:600;font-size:0.88rem;padding:11px 28px;cursor:pointer;
+      transition:opacity 0.15s;
+    }
+    .save-btn:hover{opacity:0.88;}
+    .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);}
+    .toggle-row:last-child{border-bottom:none;}
+    .toggle-label{font-size:0.88rem;color:var(--text);}
+    .toggle-sub{font-size:0.72rem;color:var(--muted);margin-top:2px;}
+    .toggle{position:relative;width:40px;height:22px;flex-shrink:0;}
+    .toggle input{opacity:0;width:0;height:0;}
+    .toggle-slider{
+      position:absolute;inset:0;background:rgba(255,255,255,0.1);
+      border-radius:22px;cursor:pointer;transition:0.2s;
+    }
+    .toggle-slider::before{
+      content:'';position:absolute;height:16px;width:16px;border-radius:50%;
+      left:3px;bottom:3px;background:rgba(255,255,255,0.5);transition:0.2s;
+    }
+    .toggle input:checked + .toggle-slider{background:var(--accent);}
+    .toggle input:checked + .toggle-slider::before{transform:translateX(18px);background:#fff;}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .sidebar{transform:translateX(-240px);}
+      .main{margin-left:0;}
+      .stats-grid{grid-template-columns:1fr 1fr;}
+      .quick-grid{grid-template-columns:1fr 1fr;}
+      .workspace{grid-template-columns:1fr;}
+    }
+    @media(max-width:600px){
+      .stats-grid{grid-template-columns:1fr 1fr;}
+      .quick-grid{grid-template-columns:1fr;}
+      .main{padding:16px;}
+    }
+
+    /* MISC */
+    .badge-new{background:rgba(99,102,241,0.15);color:var(--accent);font-size:0.58rem;font-family:'JetBrains Mono',monospace;padding:3px 8px;border-radius:980px;font-weight:700;letter-spacing:1px;}
+    .badge-pro{background:rgba(245,158,11,0.15);color:var(--orange);font-size:0.58rem;font-family:'JetBrains Mono',monospace;padding:3px 8px;border-radius:980px;font-weight:700;letter-spacing:1px;}
+  </style>
+</head>
+<body>
+
+  <!-- ── ADMIN LOGIN SCREEN ── -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">
+        <div class="login-logo-icon">🤖</div>
+        <div>
+          <div class="login-logo-text">SUFYX-AI</div>
+          <div class="login-logo-sub">Admin Dashboard</div>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <div id="loginForm">
+        <div class="login-title">Admin Access Only</div>
+        <div class="login-sub">🔐 Restricted area — authorised personnel only</div>
+
+        <div class="login-field">
+          <label>Username</label>
+          <input type="text" id="loginUser" placeholder="Enter username" autocomplete="username"/>
+        </div>
+        <div class="login-field">
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password"/>
+        </div>
+
+        <button class="login-btn" id="loginBtn">🔓 Access Dashboard</button>
+        <div class="login-error" id="loginError">❌ Wrong credentials. Try again.</div>
+        <div class="login-attempts" id="loginAttempts"></div>
+      </div>
+
+      <!-- Locked State -->
+      <div class="login-locked" id="loginLocked">
+        <div class="lock-icon">🔒</div>
+        <div class="lock-msg">Too many wrong attempts!</div>
+        <div class="lock-sub">Dashboard locked for <span class="countdown" id="countdown">30</span> seconds</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">🤖</div>
+      <div>
+        <div class="logo-text">SUFYX-AI</div>
+        <div class="logo-sub">Agent Dashboard</div>
+      </div>
+    </div>
+
+    <div class="nav-section">Main</div>
+    <div class="nav-item active" data-view="overview">
+      <span class="nav-icon">🏠</span> Overview
+    </div>
+    <div class="nav-item" data-view="tools">
+      <span class="nav-icon">⚡</span> AI Tools
+      <span class="nav-badge">6</span>
+    </div>
+    <div class="nav-item" data-view="agent">
+      <span class="nav-icon">🤖</span> Agent Runner
+    </div>
+
+    <div class="nav-section">Data</div>
+    <div class="nav-item" data-view="history">
+      <span class="nav-icon">📋</span> Task History
+    </div>
+
+    <div class="nav-section">Config</div>
+    <div class="nav-item" data-view="settings">
+      <span class="nav-icon">⚙️</span> Settings
+    </div>
+    <div class="nav-item" id="backToSite">
+      <span class="nav-icon">🌐</span> Back to Site
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="agent-status">
+        <div class="status-dot"></div>
+        <div class="status-text">Agent Online</div>
+      </div>
+      <button id="logoutBtn" style="margin-top:10px;width:100%;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:9px;color:#EF4444;font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:600;padding:9px;cursor:pointer;transition:all 0.15s;letter-spacing:0.3px;">
+        🔒 Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <div>
+        <div class="topbar-title">Good day, <span>Sufiyan</span> 👋</div>
+        <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">SUFYX-AI Agent is ready to execute your tasks</div>
+      </div>
+      <div class="topbar-right">
+        <div class="task-counter">Tasks today: <strong id="taskCount">0</strong></div>
+        <div class="task-counter" id="modelBadge">Model: <strong>Claude Sonnet</strong></div>
+      </div>
+    </div>
+
+    <!-- ── OVERVIEW VIEW ── -->
+    <div class="view active" id="view-overview">
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Tasks Run</div>
+          <div class="stat-value" id="stat-tasks">0</div>
+          <div class="stat-sub">Total this session</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Completed</div>
+          <div class="stat-value" id="stat-done" style="color:var(--green);">0</div>
+          <div class="stat-sub">Successfully done</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Errors</div>
+          <div class="stat-value" id="stat-err" style="color:var(--red);">0</div>
+          <div class="stat-sub">Failed tasks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">AI Tools</div>
+          <div class="stat-value" style="color:var(--accent);">6</div>
+          <div class="stat-sub">Available agents</div>
+        </div>
+      </div>
+
+      <div class="section-title">Quick Launch</div>
+      <div class="quick-grid">
+        <div class="quick-card" data-goto="tools" data-tool="product">
+          <div class="quick-icon" style="background:rgba(99,102,241,0.12);">📝</div>
+          <div><div class="quick-name">Product Writer</div><div class="quick-desc">Auto-generate descriptions</div></div>
+        </div>
+        <div class="quick-card" data-goto="tools" data-tool="caption">
+          <div class="quick-icon" style="background:rgba(236,72,153,0.12);">📸</div>
+          <div><div class="quick-name">Caption Generator</div><div class="quick-desc">Instagram ready captions</div></div>
+        </div>
+        <div class="quick-card" data-goto="tools" data-tool="lead">
+          <div class="quick-icon" style="background:rgba(16,185,129,0.12);">🎯</div>
+          <div><div class="quick-name">Lead Qualifier</div><div class="quick-desc">Score & qualify leads</div></div>
+        </div>
+        <div class="quick-card" data-goto="tools" data-tool="email">
+          <div class="quick-icon" style="background:rgba(59,130,246,0.12);">📧</div>
+          <div><div class="quick-name">Cold Email Writer</div><div class="quick-desc">Personalised outreach</div></div>
+        </div>
+        <div class="quick-card" data-goto="tools" data-tool="whatsapp">
+          <div class="quick-icon" style="background:rgba(37,211,102,0.12);">💬</div>
+          <div><div class="quick-name">WhatsApp Drafter</div><div class="quick-desc">Reply suggestions</div></div>
+        </div>
+        <div class="quick-card" data-goto="agent">
+          <div class="quick-icon" style="background:rgba(245,158,11,0.12);">🤖</div>
+          <div><div class="quick-name">Agent Runner</div><div class="quick-desc">Multi-step AI tasks</div></div>
+        </div>
+      </div>
+
+      <div class="section-title">Task Queue</div>
+      <div class="task-queue">
+        <div class="queue-header">
+          <div class="queue-title">Recent Tasks</div>
+          <button class="clear-btn" id="clearQueue">Clear All</button>
+        </div>
+        <div class="task-list" id="taskList">
+          <div class="empty-queue" id="emptyQueue">No tasks yet. Launch an AI tool to get started! ⚡</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TOOLS VIEW ── -->
+    <div class="view" id="view-tools">
+      <div class="section-title" style="margin-bottom:20px;">AI Tool Workspace</div>
+      <div class="workspace">
+
+        <!-- Product Description Writer -->
+        <div class="tool-panel" id="tool-product">
+          <div class="tool-header">
+            <div class="tool-header-icon">📝</div>
+            <div class="tool-header-name">Product Description Writer</div>
+            <span class="tool-header-badge badge-new">AI</span>
+          </div>
+          <div class="tool-body">
+            <div class="tool-label">Product Name</div>
+            <input class="tool-input" type="text" id="prod-name" placeholder="e.g. WhatsApp AI Responder"/>
+            <div class="tool-label">Key Features (comma separated)</div>
+            <input class="tool-input" type="text" id="prod-feat" placeholder="e.g. auto-reply, lead qualify, booking"/>
+            <div class="tool-label">Target Audience</div>
+            <select class="tool-select" id="prod-audience">
+              <option>Small Business Owner</option>
+              <option>Freelancer</option>
+              <option>E-commerce Store</option>
+              <option>Agency</option>
+              <option>Coach / Consultant</option>
+            </select>
+            <button class="run-btn" id="run-product" style="background:linear-gradient(135deg,#6366F1,#8B5CF6);color:#fff;">
+              ⚡ Generate Description
+            </button>
+            <div class="tool-output" id="out-product">
+              <button class="copy-out-btn" onclick="copyOutput('out-product')">Copy</button>
+              <span id="out-product-text"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instagram Caption Generator -->
+        <div class="tool-panel" id="tool-caption">
+          <div class="tool-header">
+            <div class="tool-header-icon">📸</div>
+            <div class="tool-header-name">Instagram Caption Generator</div>
+            <span class="tool-header-badge" style="background:rgba(236,72,153,0.15);color:#EC4899;">AI</span>
+          </div>
+          <div class="tool-body">
+            <div class="tool-label">Post Topic / Product</div>
+            <input class="tool-input" type="text" id="cap-topic" placeholder="e.g. New AI automation product launch"/>
+            <div class="tool-label">Tone</div>
+            <select class="tool-select" id="cap-tone">
+              <option>Exciting & Energetic</option>
+              <option>Professional</option>
+              <option>Casual & Friendly</option>
+              <option>Motivational</option>
+              <option>Hinglish (Hindi+English)</option>
+            </select>
+            <div class="tool-label">Number of Captions</div>
+            <select class="tool-select" id="cap-count">
+              <option value="3">3 Captions</option>
+              <option value="5">5 Captions</option>
+            </select>
+            <button class="run-btn" id="run-caption" style="background:linear-gradient(135deg,#EC4899,#8B5CF6);color:#fff;">
+              📸 Generate Captions
+            </button>
+            <div class="tool-output" id="out-caption">
+              <button class="copy-out-btn" onclick="copyOutput('out-caption')">Copy</button>
+              <span id="out-caption-text"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lead Qualifier -->
+        <div class="tool-panel" id="tool-lead">
+          <div class="tool-header">
+            <div class="tool-header-icon">🎯</div>
+            <div class="tool-header-name">Lead Qualifier & Scorer</div>
+            <span class="tool-header-badge" style="background:rgba(16,185,129,0.15);color:#10B981;">AI</span>
+          </div>
+          <div class="tool-body">
+            <div class="tool-label">Lead Info (Name, Business, Message)</div>
+            <textarea class="tool-input" id="lead-info" rows="3" placeholder="Name: Rahul Sharma&#10;Business: E-commerce store&#10;Message: Want to automate WhatsApp replies"></textarea>
+            <div class="tool-label">Your Product / Service</div>
+            <input class="tool-input" type="text" id="lead-product" placeholder="e.g. WhatsApp AI Responder — ₹499"/>
+            <button class="run-btn" id="run-lead" style="background:linear-gradient(135deg,#10B981,#059669);color:#fff;">
+              🎯 Qualify Lead
+            </button>
+            <div class="tool-output" id="out-lead">
+              <button class="copy-out-btn" onclick="copyOutput('out-lead')">Copy</button>
+              <span id="out-lead-text"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cold Email Writer -->
+        <div class="tool-panel" id="tool-email">
+          <div class="tool-header">
+            <div class="tool-header-icon">📧</div>
+            <div class="tool-header-name">Cold Email Writer</div>
+            <span class="tool-header-badge" style="background:rgba(59,130,246,0.15);color:#3B82F6;">AI</span>
+          </div>
+          <div class="tool-body">
+            <div class="tool-label">Recipient Name & Business</div>
+            <input class="tool-input" type="text" id="email-to" placeholder="e.g. Priya, runs a clothing store in Delhi"/>
+            <div class="tool-label">Your Offer</div>
+            <input class="tool-input" type="text" id="email-offer" placeholder="e.g. AI WhatsApp bot to 3x their sales"/>
+            <div class="tool-label">Email Style</div>
+            <select class="tool-select" id="email-style">
+              <option>Short & Direct (5 lines)</option>
+              <option>Problem-Solution</option>
+              <option>Curiosity Hook</option>
+              <option>Social Proof</option>
+            </select>
+            <button class="run-btn" id="run-email" style="background:linear-gradient(135deg,#3B82F6,#2563EB);color:#fff;">
+              📧 Write Cold Email
+            </button>
+            <div class="tool-output" id="out-email">
+              <button class="copy-out-btn" onclick="copyOutput('out-email')">Copy</button>
+              <span id="out-email-text"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Reply Drafter -->
+        <div class="tool-panel" id="tool-whatsapp">
+          <div class="tool-header">
+            <div class="tool-header-icon">💬</div>
+            <div class="tool-header-name">WhatsApp Reply Drafter</div>
+            <span class="tool-header-badge" style="background:rgba(37,211,102,0.15);color:#25D366;">AI</span>
+          </div>
+          <div class="tool-body">
+            <div class="tool-label">Customer Message</div>
+            <textarea class="tool-input" id="wa-msg" rows="3" placeholder="e.g. Bhai ye product kya hai? Price kitna hai?"></textarea>
+            <div class="tool-label">Context / Your Business</div>
+            <input class="tool-input" type="text" id="wa-context" placeholder="e.g. Selling AI automation products"/>
+            <div class="tool-label">Reply Tone</div>
+            <select class="tool-select" id="wa-tone">
+              <option>Friendly Hinglish</option>
+              <option>Professional English</option>
+              <option>Casual Hindi</option>
+              <option>Sales Focused</option>
+            </select>
+            <button class="run-btn" id="run-whatsapp" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;">
+              💬 Draft Reply
+            </button>
+            <div class="tool-output" id="out-whatsapp">
+              <button class="copy-out-btn" onclick="copyOutput('out-whatsapp')">Copy</button>
+              <span id="out-whatsapp-text"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Business Report Generator -->
+        <div class="tool-panel" id="tool-report">
+          <div class="tool-header">
+            <div class="tool-header-icon">📊</div>
+            <div class="tool-header-name">Business Report Generator</div>
+            <span class="tool-header-badge badge-pro">PRO</span>
+          </div>
+          <div class="tool-body">
+            <div class="tool-label">Business / Project Name</div>
+            <input class="tool-input" type="text" id="rep-name" placeholder="e.g. SUFYX-AI Digital Products"/>
+            <div class="tool-label">Key Metrics / Data</div>
+            <textarea class="tool-input" id="rep-data" rows="3" placeholder="e.g. Products: 7, Revenue: ₹45,000, Customers: 120, Top product: WhatsApp Bot"></textarea>
+            <div class="tool-label">Report Type</div>
+            <select class="tool-select" id="rep-type">
+              <option>Monthly Performance Summary</option>
+              <option>Sales Analysis</option>
+              <option>Growth Strategy Report</option>
+              <option>Customer Insights</option>
+            </select>
+            <button class="run-btn" id="run-report" style="background:linear-gradient(135deg,#F59E0B,#D97706);color:#000;font-weight:700;">
+              📊 Generate Report
+            </button>
+            <div class="tool-output" id="out-report">
+              <button class="copy-out-btn" onclick="copyOutput('out-report')">Copy</button>
+              <span id="out-report-text"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── AGENT RUNNER VIEW ── -->
+    <div class="view" id="view-agent">
+      <div class="section-title" style="margin-bottom:20px;">AI Agent Runner</div>
+      <div class="agent-panel">
+        <div class="agent-header">
+          <div class="agent-title">🤖 Multi-Step AI Agent</div>
+          <span class="badge-new">Claude Powered</span>
+        </div>
+        <div class="agent-body">
+          <div class="tool-label">Describe your task (the agent will plan + execute step by step)</div>
+          <div class="agent-input-row">
+            <textarea class="tool-input" id="agent-task" rows="3" placeholder="e.g. Write a product launch strategy for my new AI tool priced at ₹399, targeting Indian freelancers. Include Instagram captions, a cold email, and a WhatsApp message."></textarea>
+            <button class="agent-run-btn" id="agentRunBtn">▶ Run Agent</button>
+          </div>
+
+          <div class="tool-label" style="margin-bottom:10px;">Preset Tasks</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+            <button class="qr-preset">📦 Launch new product</button>
+            <button class="qr-preset">📧 Write outreach sequence</button>
+            <button class="qr-preset">📊 Generate weekly report</button>
+            <button class="qr-preset">🎯 Qualify 5 leads</button>
+            <button class="qr-preset">📸 Create content plan</button>
+          </div>
+
+          <div class="tool-label" style="margin-bottom:8px;">Agent Execution Log</div>
+          <div class="agent-log" id="agentLog">
+            <div class="log-empty">Agent is ready. Give it a task above ⚡</div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:10px;align-items:center;">
+            <button class="clear-btn" id="clearLog">Clear Log</button>
+            <div id="agentResult" style="display:none;flex:1;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:10px 14px;font-size:0.82rem;color:var(--text2);line-height:1.6;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HISTORY VIEW ── -->
+    <div class="view" id="view-history">
+      <div class="section-title" style="margin-bottom:20px;">Task History</div>
+      <div class="task-queue">
+        <div class="queue-header">
+          <div class="queue-title">All Tasks This Session</div>
+          <button class="clear-btn" id="clearHistory">Clear History</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="history-table" id="historyTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Task</th>
+                <th>Tool</th>
+                <th>Status</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody">
+              <tr><td colspan="5" style="text-align:center;padding:32px;color:var(--muted);">No history yet. Run a task to see it here.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SETTINGS VIEW ── -->
+    <div class="view" id="view-settings">
+      <div class="section-title" style="margin-bottom:20px;">Dashboard Settings</div>
+
+      <div class="settings-card">
+        <div class="settings-title">👤 Your Profile</div>
+        <div class="setting-row">
+          <div class="setting-field"><label>Name</label><input type="text" id="set-name" value="Sufiyan" placeholder="Your name"/></div>
+          <div class="setting-field"><label>Business</label><input type="text" id="set-biz" value="SUFYX-AI" placeholder="Business name"/></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-field"><label>WhatsApp</label><input type="text" id="set-wa" value="+91 90271 08764" placeholder="WhatsApp number"/></div>
+          <div class="setting-field"><label>Instagram</label><input type="text" id="set-ig" value="@sufiyann_9027" placeholder="Instagram handle"/></div>
+        </div>
+      </div>
+
+      <div class="settings-card">
+        <div class="settings-title">🤖 AI Model Settings</div>
+        <div class="setting-row">
+          <div class="setting-field">
+            <label>Default Model</label>
+            <select id="set-model">
+              <option value="claude-sonnet-4-20250514">Claude Sonnet 4 (Recommended)</option>
+              <option value="claude-haiku-4-5-20251001">Claude Haiku 4 (Faster)</option>
+            </select>
+          </div>
+          <div class="setting-field">
+            <label>Response Length</label>
+            <select id="set-length">
+              <option value="300">Short (300 tokens)</option>
+              <option value="600" selected>Medium (600 tokens)</option>
+              <option value="1200">Long (1200 tokens)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-card">
+        <div class="settings-title">⚙️ Agent Preferences</div>
+        <div class="toggle-row">
+          <div><div class="toggle-label">Auto-save task history</div><div class="toggle-sub">Save all task outputs to session storage</div></div>
+          <label class="toggle"><input type="checkbox" id="tog-history" checked><div class="toggle-slider"></div></label>
+        </div>
+        <div class="toggle-row">
+          <div><div class="toggle-label">Show typing animation</div><div class="toggle-sub">Animate AI output character by character</div></div>
+          <label class="toggle"><input type="checkbox" id="tog-typing" checked><div class="toggle-slider"></div></label>
+        </div>
+        <div class="toggle-row">
+          <div><div class="toggle-label">Hinglish mode</div><div class="toggle-sub">Generate outputs in Hinglish by default</div></div>
+          <label class="toggle"><input type="checkbox" id="tog-hinglish"><div class="toggle-slider"></div></label>
+        </div>
+      </div>
+
+      <button class="save-btn" id="saveSettings">💾 Save Settings</button>
+    </div>
+
+  </main>
+
+  <style>
+    .qr-preset{
+      background:var(--card);border:1px solid var(--border);border-radius:8px;
+      color:var(--text2);font-family:'Outfit',sans-serif;font-size:0.78rem;
+      padding:7px 14px;cursor:pointer;transition:all 0.15s;
+    }
+    .qr-preset:hover{border-color:var(--accent);color:var(--accent);}
+  </style>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // ══════════════════════════════════════
+    //  ADMIN AUTH — Check session first
+    // ══════════════════════════════════════
+    var ADMIN_USER = 'sufiyan';       // ← Change your username
+    var ADMIN_PASS = 'sufyx@2026';    // ← Change your password
+    var MAX_ATTEMPTS = 3;
+    var LOCKOUT_SECS = 30;
+
+    var loginScreen = document.getElementById('loginScreen');
+    var loginForm   = document.getElementById('loginForm');
+    var loginLocked = document.getElementById('loginLocked');
+    var loginError  = document.getElementById('loginError');
+    var loginAttempts = document.getElementById('loginAttempts');
+    var loginBtn    = document.getElementById('loginBtn');
+    var countdownEl = document.getElementById('countdown');
+
+    var attempts = 0;
+    var isLocked = false;
+
+    // Check if already logged in this session
+    var isAuthed = false;
+    try { isAuthed = sessionStorage.getItem('sufyx_admin_auth') === 'true'; } catch(e){}
+
+    if (isAuthed) {
+      loginScreen.style.display = 'none';
+    }
+
+    function lockDashboard() {
+      isLocked = true;
+      loginForm.style.display = 'none';
+      loginLocked.classList.add('show');
+      var secs = LOCKOUT_SECS;
+      countdownEl.textContent = secs;
+      var timer = setInterval(function () {
+        secs--;
+        countdownEl.textContent = secs;
+        if (secs <= 0) {
+          clearInterval(timer);
+          isLocked = false;
+          attempts = 0;
+          loginForm.style.display = 'block';
+          loginLocked.classList.remove('show');
+          loginError.classList.remove('show');
+          loginAttempts.textContent = '';
+          document.getElementById('loginUser').value = '';
+          document.getElementById('loginPass').value = '';
+        }
+      }, 1000);
+    }
+
+    function tryLogin() {
+      if (isLocked) return;
+      var user = document.getElementById('loginUser').value.trim();
+      var pass = document.getElementById('loginPass').value;
+
+      if (user === ADMIN_USER && pass === ADMIN_PASS) {
+        // ✅ Correct!
+        loginBtn.textContent = '✅ Access Granted...';
+        loginBtn.disabled = true;
+        loginScreen.style.opacity = '0';
+        loginScreen.style.transition = 'opacity 0.4s ease';
+        try { sessionStorage.setItem('sufyx_admin_auth', 'true'); } catch(e){}
+        setTimeout(function () {
+          loginScreen.style.display = 'none';
+          loginScreen.style.opacity = '1';
+        }, 400);
+      } else {
+        // ❌ Wrong
+        attempts++;
+        var remaining = MAX_ATTEMPTS - attempts;
+        document.getElementById('loginPass').classList.add('error');
+        setTimeout(function () {
+          document.getElementById('loginPass').classList.remove('error');
+        }, 500);
+        document.getElementById('loginPass').value = '';
+
+        if (remaining <= 0) {
+          lockDashboard();
+        } else {
+          loginError.classList.add('show');
+          loginAttempts.textContent = remaining + ' attempt' + (remaining === 1 ? '' : 's') + ' remaining';
+        }
+      }
+    }
+
+    loginBtn.addEventListener('click', tryLogin);
+    document.getElementById('loginPass').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') tryLogin();
+    });
+    document.getElementById('loginUser').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') document.getElementById('loginPass').focus();
+    });
+
+    // Logout function (sidebar)
+    var logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', function () {
+        try { sessionStorage.removeItem('sufyx_admin_auth'); } catch(e){}
+        loginScreen.style.display = 'flex';
+        loginBtn.textContent = '🔓 Access Dashboard';
+        loginBtn.disabled = false;
+        document.getElementById('loginUser').value = '';
+        document.getElementById('loginPass').value = '';
+        loginError.classList.remove('show');
+        loginAttempts.textContent = '';
+        attempts = 0;
+      });
+    }
+
+    // ══════════════════════════════════════
+    //  DASHBOARD LOGIC STARTS HERE
+    // ══════════════════════════════════════
+    var state = {
+      tasks: 0, done: 0, errors: 0,
+      history: [],
+      settings: {
+        name: 'Sufiyan', biz: 'SUFYX-AI',
+        model: 'claude-sonnet-4-20250514',
+        maxTokens: 600,
+        typing: true, hinglish: false
+      }
+    };
+
+    function el(id){ return document.getElementById(id); }
+    function on(id, ev, fn){ var e=el(id); if(e) e.addEventListener(ev,fn); }
+
+    // Load settings
+    try {
+      var saved = JSON.parse(localStorage.getItem('sufyx_agent_settings')||'{}');
+      Object.assign(state.settings, saved);
+      if(saved.name) el('set-name').value = saved.name;
+      if(saved.biz)  el('set-biz').value  = saved.biz;
+      if(saved.model) el('set-model').value = saved.model;
+    } catch(e){}
+
+    // ── NAVIGATION ──
+    document.querySelectorAll('.nav-item[data-view]').forEach(function(item){
+      item.addEventListener('click', function(){
+        var view = this.getAttribute('data-view');
+        document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+        this.classList.add('active');
+        document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
+        el('view-'+view).classList.add('active');
+      });
+    });
+
+    on('backToSite', 'click', function(){ window.history.back(); });
+
+    // Quick cards navigation
+    document.querySelectorAll('.quick-card').forEach(function(card){
+      card.addEventListener('click', function(){
+        var goto = this.getAttribute('data-goto');
+        var tool = this.getAttribute('data-tool');
+        // Activate view
+        document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+        document.querySelectorAll('.nav-item[data-view="'+goto+'"]').forEach(function(n){ n.classList.add('active'); });
+        document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
+        el('view-'+goto).classList.add('active');
+        // Scroll to tool if specified
+        if(tool){
+          setTimeout(function(){
+            var t = el('tool-'+tool);
+            if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+          }, 100);
+        }
+      });
+    });
+
+    // ── STATS UPDATE ──
+    function updateStats(){
+      el('stat-tasks').textContent = state.tasks;
+      el('stat-done').textContent  = state.done;
+      el('stat-err').textContent   = state.errors;
+      el('taskCount').textContent  = state.tasks;
+    }
+
+    // ── TASK QUEUE ──
+    function addToQueue(name, tool, status){
+      state.tasks++;
+      var ts = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+      var item = { id: state.tasks, name: name, tool: tool, status: status, time: ts };
+      state.history.unshift(item);
+
+      // Remove empty msg
+      el('emptyQueue').style.display = 'none';
+
+      var div = document.createElement('div');
+      div.className = 'task-item';
+      div.id = 'task-'+item.id;
+      div.innerHTML =
+        '<div class="task-status-dot '+status+'"></div>'+
+        '<div><div class="task-name">'+name+'</div><div class="task-meta">'+tool+'</div></div>'+
+        '<span class="task-badge '+status+'">'+status+'</span>'+
+        '<div class="task-time">'+ts+'</div>';
+      el('taskList').prepend(div);
+      updateStats();
+      updateHistory();
+      return item.id;
+    }
+
+    function updateTaskStatus(id, status){
+      var item = state.history.find(function(h){ return h.id === id; });
+      if(item){ item.status = status; if(status==='done') state.done++; if(status==='error') state.errors++; }
+      var dot = document.querySelector('#task-'+id+' .task-status-dot');
+      var badge = document.querySelector('#task-'+id+' .task-badge');
+      if(dot){ dot.className = 'task-status-dot '+status; }
+      if(badge){ badge.className = 'task-badge '+status; badge.textContent = status; }
+      updateStats();
+      updateHistory();
+    }
+
+    on('clearQueue', 'click', function(){
+      el('taskList').innerHTML = '<div class="empty-queue" id="emptyQueue">No tasks yet. Launch an AI tool to get started! ⚡</div>';
+      state.history = []; state.tasks=0; state.done=0; state.errors=0;
+      updateStats(); updateHistory();
+    });
+
+    // ── HISTORY TABLE ──
+    function updateHistory(){
+      var tbody = el('historyBody');
+      if(state.history.length === 0){
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:32px;color:var(--muted);">No history yet.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = state.history.map(function(h,i){
+        var color = h.status==='done'?'var(--green)':h.status==='error'?'var(--red)':h.status==='running'?'var(--accent)':'var(--orange)';
+        return '<tr>'+
+          '<td style="color:var(--muted);font-family:\'JetBrains Mono\',monospace;">#'+h.id+'</td>'+
+          '<td style="color:var(--text);">'+h.name+'</td>'+
+          '<td style="color:var(--text2);">'+h.tool+'</td>'+
+          '<td><span style="color:'+color+';font-family:\'JetBrains Mono\',monospace;font-size:0.72rem;">'+h.status+'</span></td>'+
+          '<td style="font-family:\'JetBrains Mono\',monospace;font-size:0.7rem;">'+h.time+'</td>'+
+        '</tr>';
+      }).join('');
+    }
+    on('clearHistory', 'click', function(){ state.history=[]; updateHistory(); });
+
+    // ── CLAUDE API CALL ──
+    async function callClaude(systemPrompt, userPrompt, outputEl, textEl, taskId){
+      try {
+        var response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: state.settings.model || 'claude-sonnet-4-20250514',
+            max_tokens: parseInt(state.settings.maxTokens) || 600,
+            system: systemPrompt,
+            messages: [{ role: 'user', content: userPrompt }]
+          })
+        });
+        var data = await response.json();
+        var text = (data.content && data.content[0] && data.content[0].text)
+          ? data.content[0].text
+          : 'Error: No response received.';
+
+        // Typing animation
+        outputEl.classList.add('show');
+        if(state.settings.typing){
+          textEl.innerHTML = '';
+          var i = 0;
+          var cursor = document.createElement('span');
+          cursor.className = 'output-typing';
+          textEl.appendChild(cursor);
+          var interval = setInterval(function(){
+            if(i < text.length){
+              cursor.before(document.createTextNode(text[i]));
+              i++;
+            } else {
+              clearInterval(interval);
+              cursor.remove();
+              textEl.innerHTML = text.replace(/\n/g,'<br>');
+            }
+          }, 8);
+        } else {
+          textEl.innerHTML = text.replace(/\n/g,'<br>');
+        }
+        updateTaskStatus(taskId, 'done');
+        return text;
+      } catch(err) {
+        var errMsg = '⚠️ API Error: ' + (err.message || 'Network issue. Check connection.');
+        outputEl.classList.add('show');
+        textEl.innerHTML = errMsg;
+        updateTaskStatus(taskId, 'error');
+        return null;
+      }
+    }
+
+    // ── COPY OUTPUT ──
+    window.copyOutput = function(outId){
+      var text = el(outId+'-text').innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var btn = document.querySelector('#'+outId+' .copy-out-btn');
+        if(btn){ btn.textContent='✓ Copied!'; setTimeout(function(){ btn.textContent='Copy'; },2000); }
+      });
+    };
+
+    // ── TOOL: PRODUCT DESCRIPTION ──
+    on('run-product', 'click', async function(){
+      var name = el('prod-name').value.trim();
+      var feat = el('prod-feat').value.trim();
+      var aud  = el('prod-audience').value;
+      if(!name){ el('prod-name').style.borderColor='var(--red)'; el('prod-name').focus(); return; }
+      this.disabled=true; this.textContent='⏳ Generating...';
+      var taskId = addToQueue('Product: '+name, 'Product Writer', 'running');
+      var sys = 'You are an expert copywriter for SUFYX-AI, an Indian digital products company. Write compelling product descriptions in a clear, benefit-focused style. Keep it concise and professional.';
+      var prompt = 'Write a compelling product description for:\nProduct: '+name+'\nFeatures: '+feat+'\nTarget: '+aud+'\n\nFormat: 2-3 sentences tagline, then 4 bullet benefits, then a 1-line CTA. Keep it punchy and conversion-focused.';
+      await callClaude(sys, prompt, el('out-product'), el('out-product-text'), taskId);
+      this.disabled=false; this.textContent='⚡ Generate Description';
+    });
+
+    // ── TOOL: INSTAGRAM CAPTIONS ──
+    on('run-caption', 'click', async function(){
+      var topic = el('cap-topic').value.trim();
+      var tone  = el('cap-tone').value;
+      var count = el('cap-count').value;
+      if(!topic){ el('cap-topic').style.borderColor='var(--red)'; el('cap-topic').focus(); return; }
+      this.disabled=true; this.textContent='⏳ Generating...';
+      var taskId = addToQueue('Caption: '+topic, 'Caption Generator', 'running');
+      var sys = 'You are a top Instagram content creator for an Indian AI products brand. Generate scroll-stopping captions with relevant emojis and hashtags.';
+      var prompt = 'Generate '+count+' Instagram captions for: "'+topic+'"\nTone: '+tone+'\n\nEach caption should have: hook line, 2-3 body lines, emojis, 5-8 hashtags. Number them clearly.';
+      await callClaude(sys, prompt, el('out-caption'), el('out-caption-text'), taskId);
+      this.disabled=false; this.textContent='📸 Generate Captions';
+    });
+
+    // ── TOOL: LEAD QUALIFIER ──
+    on('run-lead', 'click', async function(){
+      var info    = el('lead-info').value.trim();
+      var product = el('lead-product').value.trim();
+      if(!info){ el('lead-info').style.borderColor='var(--red)'; el('lead-info').focus(); return; }
+      this.disabled=true; this.textContent='⏳ Qualifying...';
+      var taskId = addToQueue('Lead Qualify', 'Lead Qualifier', 'running');
+      var sys = 'You are a sales expert for SUFYX-AI. Qualify leads and provide actionable next steps. Be concise and practical.';
+      var prompt = 'Qualify this lead:\n'+info+'\nProduct: '+product+'\n\nProvide:\n1. Lead Score (1-10) with reasoning\n2. Is this a good fit? Why?\n3. Their likely objection\n4. Best opening message to send them (WhatsApp style)\n5. Next action to take';
+      await callClaude(sys, prompt, el('out-lead'), el('out-lead-text'), taskId);
+      this.disabled=false; this.textContent='🎯 Qualify Lead';
+    });
+
+    // ── TOOL: COLD EMAIL ──
+    on('run-email', 'click', async function(){
+      var to    = el('email-to').value.trim();
+      var offer = el('email-offer').value.trim();
+      var style = el('email-style').value;
+      if(!to){ el('email-to').style.borderColor='var(--red)'; el('email-to').focus(); return; }
+      this.disabled=true; this.textContent='⏳ Writing...';
+      var taskId = addToQueue('Cold Email: '+to, 'Email Writer', 'running');
+      var sys = 'You are a cold email expert. Write emails that get replies. No fluff, high personalization, clear value, one CTA. For Indian businesses.';
+      var prompt = 'Write a cold email.\nRecipient: '+to+'\nOffer: '+offer+'\nStyle: '+style+'\n\nInclude: Subject line, email body. Make it feel personal, not templated.';
+      await callClaude(sys, prompt, el('out-email'), el('out-email-text'), taskId);
+      this.disabled=false; this.textContent='📧 Write Cold Email';
+    });
+
+    // ── TOOL: WHATSAPP DRAFTER ──
+    on('run-whatsapp', 'click', async function(){
+      var msg     = el('wa-msg').value.trim();
+      var context = el('wa-context').value.trim();
+      var tone    = el('wa-tone').value;
+      if(!msg){ el('wa-msg').style.borderColor='var(--red)'; el('wa-msg').focus(); return; }
+      this.disabled=true; this.textContent='⏳ Drafting...';
+      var taskId = addToQueue('WA Reply', 'WhatsApp Drafter', 'running');
+      var sys = 'You are a WhatsApp customer support expert for an Indian AI products business. Write natural, helpful replies that feel human, not robotic.';
+      var prompt = 'Draft a WhatsApp reply.\nCustomer said: "'+msg+'"\nBusiness context: '+context+'\nTone: '+tone+'\n\nWrite 2 reply options — one short (2 lines), one detailed (4-5 lines). Include relevant emoji.';
+      await callClaude(sys, prompt, el('out-whatsapp'), el('out-whatsapp-text'), taskId);
+      this.disabled=false; this.textContent='💬 Draft Reply';
+    });
+
+    // ── TOOL: BUSINESS REPORT ──
+    on('run-report', 'click', async function(){
+      var name = el('rep-name').value.trim();
+      var data = el('rep-data').value.trim();
+      var type = el('rep-type').value;
+      if(!name){ el('rep-name').style.borderColor='var(--red)'; el('rep-name').focus(); return; }
+      this.disabled=true; this.textContent='⏳ Generating...';
+      var taskId = addToQueue('Report: '+name, 'Report Generator', 'running');
+      var sys = 'You are a business analyst. Generate clear, insightful business reports with actionable recommendations for Indian digital product businesses.';
+      var prompt = 'Generate a '+type+' for: '+name+'\nData: '+data+'\n\nStructure: Executive Summary → Key Metrics Analysis → Insights → 3 Actionable Recommendations → Next Steps. Keep it sharp and practical.';
+      await callClaude(sys, prompt, el('out-report'), el('out-report-text'), taskId);
+      this.disabled=false; this.textContent='📊 Generate Report';
+    });
+
+    // ── AGENT RUNNER ──
+    var agentLogEl = el('agentLog');
+
+    function addLog(type, msg){
+      var empty = agentLogEl.querySelector('.log-empty');
+      if(empty) empty.remove();
+      var ts = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+      var line = document.createElement('div');
+      line.className = 'log-line';
+      line.innerHTML = '<span class="log-time">['+ts+']</span><span class="log-type '+type+'">'+type.toUpperCase()+'</span><span class="log-msg">'+msg+'</span>';
+      agentLogEl.appendChild(line);
+      agentLogEl.scrollTop = agentLogEl.scrollHeight;
+    }
+
+    // Preset tasks
+    document.querySelectorAll('.qr-preset').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var presets = {
+          '📦 Launch new product': 'Write a complete product launch strategy for a new AI automation product priced at ₹399 for Indian freelancers. Include: 3 Instagram captions, a cold email subject line, a WhatsApp broadcast message, and 5 launch hashtags.',
+          '📧 Write outreach sequence': 'Write a 3-message WhatsApp outreach sequence for selling AI automation products to small business owners in India. Message 1: cold intro, Message 2: follow up (2 days later), Message 3: final attempt with discount offer.',
+          '📊 Generate weekly report': 'Generate a weekly performance summary template for a digital products business selling AI tools in India. Include sections for: sales, top products, customer feedback, and next week goals.',
+          '🎯 Qualify 5 leads': 'Create a lead qualification framework for selling AI automation products (₹199-₹999) to Indian businesses. Include: 5 qualifying questions, scoring system, and response templates for hot/warm/cold leads.',
+          '📸 Create content plan': 'Create a 7-day Instagram content plan for SUFYX-AI — an Indian AI digital products brand. Include post topic, caption idea, content type (reel/post/story), and best posting time for each day.'
+        };
+        el('agent-task').value = presets[this.textContent] || '';
+      });
+    });
+
+    on('agentRunBtn', 'click', async function(){
+      var task = el('agent-task').value.trim();
+      if(!task){ el('agent-task').style.borderColor='var(--red)'; el('agent-task').focus(); return; }
+      this.disabled=true; this.textContent='⏳ Running...';
+      el('agentResult').style.display='none';
+
+      var taskId = addToQueue('Agent: '+task.substring(0,40)+'...', 'Agent Runner', 'running');
+
+      addLog('info', 'Agent started. Analyzing task...');
+      await sleep(600);
+      addLog('think', 'Breaking task into steps...');
+      await sleep(500);
+      addLog('action', 'Calling Claude API with full context...');
+
+      var sys = `You are EDITH — an autonomous AI agent for SUFYX-AI built by Sufiyan. You execute tasks step by step, thinking out loud.
+
+About SUFYX-AI:
+- Indian AI digital products company
+- Products: Make.com Playbook (₹299), WhatsApp Bot (₹499), Content Engine (₹349), Lead Capture (₹599), Zapier Pack (₹199), Instagram Kit (₹249), AI Agent Guide (₹399), Bundle (₹999)
+- Target: Indian freelancers, small businesses, agencies
+- Contact: WhatsApp +91 90271 08764, Instagram @sufiyann_9027
+
+Execute the task completely. Show your thinking with:
+[PLAN] — What you'll do
+[STEP 1], [STEP 2] etc — Each part
+[RESULT] — Final output
+
+Be thorough, practical, and India-market focused.`;
+
+      try {
+        var response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: state.settings.model || 'claude-sonnet-4-20250514',
+            max_tokens: 1200,
+            system: sys,
+            messages: [{ role: 'user', content: task }]
+          })
+        });
+        var data = await response.json();
+        var result = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : 'Error getting response.';
+
+        addLog('think', 'Processing response...');
+        await sleep(400);
+        addLog('success', 'Task completed successfully ✓');
+
+        var resultEl = el('agentResult');
+        resultEl.style.display='block';
+        resultEl.innerHTML = result.replace(/\n/g,'<br>').replace(/\[([A-Z\s\d]+)\]/g,'<strong style="color:var(--accent);">[$1]</strong>');
+
+        updateTaskStatus(taskId, 'done');
+      } catch(err){
+        addLog('error', 'Error: '+(err.message||'Network issue'));
+        updateTaskStatus(taskId, 'error');
+      }
+
+      this.disabled=false; this.textContent='▶ Run Agent';
+    });
+
+    on('clearLog', 'click', function(){
+      agentLogEl.innerHTML = '<div class="log-empty">Agent is ready. Give it a task above ⚡</div>';
+      el('agentResult').style.display='none';
+    });
+
+    function sleep(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
+
+    // ── SETTINGS ──
+    on('saveSettings', 'click', function(){
+      state.settings.name  = el('set-name').value;
+      state.settings.biz   = el('set-biz').value;
+      state.settings.model = el('set-model').value;
+      state.settings.maxTokens = el('set-length').value;
+      state.settings.typing  = el('tog-typing').checked;
+      state.settings.hinglish= el('tog-hinglish').checked;
+      try{ localStorage.setItem('sufyx_agent_settings', JSON.stringify(state.settings)); }catch(e){}
+      this.textContent='✓ Saved!';
+      setTimeout(function(){ el('saveSettings').textContent='💾 Save Settings'; },2000);
+    });
+
+    // ── INPUT FOCUS RESET ──
+    document.querySelectorAll('.tool-input, .tool-select, .setting-field input').forEach(function(inp){
+      inp.addEventListener('focus', function(){ this.style.borderColor=''; });
+    });
+
+  });
+  </script>
+</body>
+</html>
